@@ -18,6 +18,8 @@
         nnoremap          x          "_x
         xnoremap <silent> p          :<c-u>exe col("'>") == col("$") ? 'norm! gv"_dp' : 'norm! gv"_dP'<cr>
         snoremap <silent> p     <c-g>:<c-u>exe col("'>") == col("$") ? 'norm! gv"_dp' : 'norm! gv"_dP'<cr>
+        xnoremap <silent> P          "_dP
+        snoremap <silent> P     <c-g>"_dP
 
     " S保存 Q退出 R重载vim配置 jj=esc
         nnoremap <silent> S  :w<CR>
@@ -147,6 +149,9 @@
             exec 'w !python %'
         elseif &filetype == 'go'
             exec 'w !go run %'
+        elseif &filetype == 'java'
+            exec 'w !javac %'
+            exec 'w !java %<'
         endif
     endf
 

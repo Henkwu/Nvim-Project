@@ -1,6 +1,5 @@
 " Plug
     call plug#begin('~/.config/nvim/plugged')
-            Plug 'yianwillis/vimcdoc'
             Plug 'terryma/vim-expand-region'
             Plug 'lfv89/vim-interestingwords'
             Plug 'mg979/vim-visual-multi', {'branch': 'master'}
