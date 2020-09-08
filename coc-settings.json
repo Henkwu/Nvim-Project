@@ -47,5 +47,10 @@
     "git.topRemovedSign.hlGroup": "GitGutterDelete",
     "git.changeRemovedSign.hlGroup": "GitGutterDelete",
     "git.branchCharacter": "",
-    "git.showCommitInFloating": true
+    "git.showCommitInFloating": true,
+    "java.configuration.runtimes": [{
+        "name": "JavaSE-14",
+        "path": "/opt/jdk-14.0.2",
+        "default": true
+    }]
 }

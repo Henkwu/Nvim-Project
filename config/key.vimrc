@@ -78,11 +78,6 @@
         nnoremap <m-a>     ggVG
         nnoremap <leader>y :%yank<CR>
 
-    " 0和tab 在 () 和 行首行尾切换
-        nnoremap <expr><tab> col('$') - 1 == col('.') ? '^': '$'
-        nnoremap 0 %
-        vnoremap 0 %
-
     " ctrl u 清空一行
         nnoremap <c-u> cc<Esc>
         inoremap <c-u> <Esc>cc
@@ -203,4 +198,23 @@
         catch
             redraw!
         endtry
+    endf
+
+" tab 行首行尾切换
+    nnoremap <silent> <tab> :call <SID>move()<cr>
+    nnoremap 0 %
+    vnoremap 0 %
+
+    func! s:move()
+        let [l:first, l:head] = [1, len(getline('.')) - len(substitute(getline('.'), '^\s*', '', 'g')) + 1]
+        let l:before = col('.')
+        if l:before == l:first && l:first != l:head
+            exe 'norm! ^'
+        else
+            exe 'norm! $'
+        endif
+        let l:after = col('.')
+        if l:before == l:after
+            exe 'norm! 0'
+        endif
     endf
