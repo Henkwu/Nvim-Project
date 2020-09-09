@@ -32,12 +32,12 @@
                 let l:col = col('.') - 1
                 return !l:col || getline('.')[l:col - 1] =~# '\s'
             endf
-        " Use `[g` and `]g` to navigate diagnostics
+        " gd gy K
             nmap <silent> gd <Plug>(coc-definition)
             nmap <silent> gy <Plug>(coc-type-definition)
-            nmap <silent> [g <Plug>(coc-diagnostic-prev)
-            nmap <silent> ]g <Plug>(coc-diagnostic-next)
             nmap <silent> K  :call CocAction("doHover")<cr>
+        " Show all diagnostics.
+            nmap <silent><nowait> <c-e> :<C-u>CocList diagnostics<cr>
         " coc-translator 显示翻译
             nmap <silent> mm <Plug>(coc-translator-p)
             xmap <silent> mm <Plug>(coc-translator-pv)
@@ -89,7 +89,7 @@
             nnoremap <silent> <c-h> :History<CR>
             nnoremap <silent> <c-l> :BLines<CR>
             nnoremap <silent> <c-g> :GFiles?<CR>
-            " 开着coc-explorer时无法打开fzf
+        " 开着coc-explorer时无法打开fzf
             au User CocExplorerOpenPost nnoremap <c-a> <nop>
             au User CocExplorerOpenPost nnoremap <c-t> <nop>
             au User CocExplorerOpenPost nnoremap <c-h> <nop>
