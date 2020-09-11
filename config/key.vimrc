@@ -20,16 +20,16 @@
         snoremap <silent> p     <c-g>:<c-u>exe col("'>") == col("$") ? 'norm! gv"_dp' : 'norm! gv"_dP'<cr>
         xnoremap <silent> P          "_dP
         snoremap <silent> P     <c-g>"_dP
+        nnoremap          Y           y$
 
     " S保存 Q退出 R重载vim配置 jj=esc
         nnoremap <silent> S  :w<CR>
         nnoremap <silent> Q  :q!<CR>
-        nnoremap <silent> R  :source ~/.config/nvim/init.vim<CR>:echo 'config reloaded'<CR>
-        nnoremap          Y  y$
+        nnoremap <silent> R  :source ~/.config/nvim/init.vim<CR>:echo 'reloaded'<CR>
         inoremap          jj <Esc>l
 
     " 重写Shift + 左右
-        xnoremap <s-right> e
+        xnoremap <s-right>      e
         inoremap <s-right> <esc>ea
 
     " SELECT模式快捷键
@@ -39,26 +39,26 @@
         snoremap x <c-g>x
 
     " VISUAL SELECT模式 s-tab tab左右缩进
-        xnoremap <       <gv
-        xnoremap >       >gv
+        xnoremap <            <gv
+        xnoremap >            >gv
         snoremap <       <c-g><gv
-        snoremap >       <c-g>>gv"
-        xnoremap <s-tab> <gv
-        xnoremap <tab>   >gv
+        snoremap >       <c-g>>gv
+        xnoremap <s-tab>      <gv
+        xnoremap <tab>        >gv
         snoremap <s-tab> <c-g><gv
         snoremap <tab>   <c-g>>gv
 
     " SHIFT + 方向 选择文本
         inoremap <s-up>    <esc>vk
         inoremap <s-down>  <esc>vj
-        nnoremap <s-up>    Vk
-        nnoremap <s-down>  Vj
-        xnoremap <s-up>    k
-        xnoremap <s-down>  j
+        nnoremap <s-up>         Vk
+        nnoremap <s-down>       Vj
+        xnoremap <s-up>         k
+        xnoremap <s-down>       j
         snoremap <s-up>    <esc>Vk
         snoremap <s-down>  <esc>Vj
-        nnoremap <s-left>  vh
-        nnoremap <s-right> vl
+        nnoremap <s-left>       vh
+        nnoremap <s-right>      vl
 
     " CTRL SHIFT + 方向 快速跳转
         inoremap <silent> <c-s-up>    <up><up><up><up><up><up><up><up><up><up>
@@ -97,8 +97,8 @@
         inoremap <m-r> <Esc>ciw
         inoremap <m-o> <Esc>o
         inoremap <m-O> <Esc>O
-        nnoremap <m-d> diw
-        nnoremap <m-r> ciw
+        nnoremap <m-d>      diw
+        nnoremap <m-r>      ciw
 
 " windows
     " su 新左右窗口 sc关闭当前 so关闭其他 s方向切换
@@ -124,7 +124,7 @@
         nnoremap <silent> ss :bn<CR>
         nnoremap <silent> sn :bn<CR>
         nnoremap <silent> sp :bp<CR>
-        nnoremap <silent> sd :call <SID>delbuf()<CR>
+        nnoremap <silent> W  :call <SID>delbuf()<CR>
         func! s:delbuf()
             :bd
             call SetTabline()
@@ -147,6 +147,8 @@
         elseif &filetype == 'java'
             exec 'w !javac %'
             exec 'w !java %<'
+        elseif &filetype == 'markdown'
+            exec 'MarkdownPreview'
         endif
     endf
 

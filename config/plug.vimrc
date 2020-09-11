@@ -8,6 +8,7 @@
             Plug 'iamcco/markdown-preview.vim', {'for': ['markdown', 'vim-plug']}
             Plug 'pangloss/vim-javascript', {'for': ['javascript', 'vim-plug']}
             Plug 'neoclide/coc.nvim', {'branch': 'release'}
+            Plug 'voldikss/vim-floaterm', { 'on': ['FloatermNew', 'FloatermToggle'] }
             Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
             Plug 'junegunn/fzf.vim'
             Plug 'yaocccc/vim-lines'
@@ -80,10 +81,20 @@
             nnoremap <silent> n     :call WordNavigation('forward')<CR>
             nnoremap <silent> N     :call WordNavigation('backward')<CR>
 
+    " Floaterm
+            let g:floaterm_title = ''
+            let g:floaterm_width = 0.8
+            let g:floaterm_height = 0.5
+            nnoremap <silent> tu    :FloatermNew<CR>
+            nnoremap <silent> tr    :FloatermNew ranger<CR>
+
     " fzf
         " maps
         " the_silver_searcher fd bat
-            command! -bang -nargs=*  Ag call fzf#vim#ag(<q-args>, fzf#vim#with_preview('right:50%'), <bang>0)
+            let g:fzf_preview_window = 'right:50%'
+            let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+            let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.5 } }
+            "  command! -bang -nargs=*  Ag call fzf#vim#ag(<q-args>, fzf#vim#with_preview('right:50%'), <bang>0)
             nnoremap <silent> <c-a> :Ag<CR>
             nnoremap <silent> <c-t> :Files<CR>
             nnoremap <silent> <c-h> :History<CR>
