@@ -5,7 +5,7 @@
             Plug 'mg979/vim-visual-multi', {'branch': 'master'}
             Plug 'luochen1990/rainbow'
             Plug 'Yggdroot/indentLine'
-            Plug 'iamcco/markdown-preview.vim', {'for': ['markdown', 'vim-plug']}
+            "  Plug 'iamcco/markdown-preview.vim', {'for': ['markdown', 'vim-plug']}
             Plug 'pangloss/vim-javascript', {'for': ['javascript', 'vim-plug']}
             Plug 'neoclide/coc.nvim', {'branch': 'release'}
             Plug 'voldikss/vim-floaterm', { 'on': ['FloatermNew', 'FloatermToggle'] }

@@ -11,6 +11,7 @@
         let &t_ut=''
         set wildmenu
         set nocompatible
+        set conceallevel=3
         set clipboard=unnamed
         set clipboard+=unnamedplus
     " 搜索高亮 空格+回车 去除匹配高亮
