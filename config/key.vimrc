@@ -16,11 +16,17 @@
         xnoremap          <BS>       "_d
         snoremap          <BS>  <c-g>"_d
         nnoremap          x          "_x
-        xnoremap <silent> p          :<c-u>exe col("'>") == col("$") ? 'norm! gv"_dp' : 'norm! gv"_dP'<cr>
-        snoremap <silent> p     <c-g>:<c-u>exe col("'>") == col("$") ? 'norm! gv"_dp' : 'norm! gv"_dP'<cr>
-        xnoremap <silent> P          "_dP
-        snoremap <silent> P     <c-g>"_dP
         nnoremap          Y           y$
+        xnoremap <silent> p          :<c-u>exe col("'>") == col("$") && !<SID>isSelectLines() ? 'norm! gv"_dp' : 'norm! gv"_dP'<cr>
+        snoremap <silent> p     <c-g>:<c-u>exe col("'>") == col("$") && !<SID>isSelectLines() ? 'norm! gv"_dp' : 'norm! gv"_dP'<cr>
+        func! s:isSelectLines()
+            let [l:col_left, l:col_right, l:line] = [col("'<"), col("'>"), line("'>")]
+            if l:col_left == 1 && l:col_right == len(getline(l:line)) + 1
+                echo 1
+                return 1
+            endif
+            echo 2
+        endf
 
     " S保存 Q退出 R重载vim配置 jj=esc
         nnoremap <silent> S  :w<CR>
