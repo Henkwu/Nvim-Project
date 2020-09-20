@@ -94,7 +94,6 @@
             let g:fzf_preview_window = 'right:50%'
             let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
             let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.5 } }
-            "  command! -bang -nargs=*  Ag call fzf#vim#ag(<q-args>, fzf#vim#with_preview('right:50%'), <bang>0)
             nnoremap <silent> <c-a> :Ag<CR>
             nnoremap <silent> <c-t> :Files<CR>
             nnoremap <silent> <c-h> :History<CR>
@@ -133,6 +132,7 @@
             let g:line_statuline_enable = 1
             let g:line_tabline_enable = 1
             let g:line_tabline_time_enable = 0
+            let g:line_modi_mark = '*'
         " comment
             nmap <silent> ??           :NSetComment<CR>
             xmap <silent> /       :<c-u>VSetComment<CR>
