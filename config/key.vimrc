@@ -26,10 +26,12 @@
         endf
 
     " S保存 Q退出 R重载vim配置 jj=esc
-        nnoremap <silent> S  :w<CR>
-        nnoremap <silent> Q  :q!<CR>
-        nnoremap <silent> R  :source ~/.config/nvim/init.vim<CR>:echo 'reloaded'<CR>
-        inoremap          jj <Esc>l
+        command! W w !sudo tee > /dev/null %
+        nnoremap <silent> S     :w<CR>
+        nnoremap <silent> <c-S> :W<CR>
+        nnoremap <silent> Q     :q!<CR>
+        nnoremap <silent> R     :source ~/.config/nvim/init.vim<CR>:echo 'reloaded'<CR>
+        inoremap          jj    <Esc>l
 
     " 重写Shift + 左右
         xnoremap <s-right>      e
