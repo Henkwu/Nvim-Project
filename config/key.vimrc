@@ -13,14 +13,20 @@
         snoremap <c-s>     <c-g>:s/\v//gc<left><left><left><left>
 
     " 只删除
+        snoremap          y     <c-g>y
         xnoremap          <BS>       "_d
         snoremap          <BS>  <c-g>"_d
         nnoremap          x          "_x
+        xnoremap          x          "_x
+        snoremap          x     <c-g>"_x
         nnoremap          Y           y$
+        xnoremap          c          "_c
+        snoremap <silent> c     <c-g>"_c
         xnoremap <silent> p          :<c-u>exe col("'>") == col("$") && !<SID>isSelectLines() ? 'norm! gv"_dp' : 'norm! gv"_dP'<cr>
         snoremap <silent> p     <c-g>:<c-u>exe col("'>") == col("$") && !<SID>isSelectLines() ? 'norm! gv"_dp' : 'norm! gv"_dP'<cr>
         xnoremap <silent> P          "_dP
         snoremap <silent> P     <c-g>"_dP
+        
         func! s:isSelectLines()
             return col("'<") == 1 && col("'>") == len(getline(line("'>"))) + 1
         endf
@@ -36,12 +42,6 @@
     " 重写Shift + 左右
         xnoremap <s-right>      e
         inoremap <s-right> <esc>ea
-
-    " SELECT模式快捷键
-        snoremap y <c-g>y
-        snoremap d <c-g>d
-        snoremap c <c-g>c
-        snoremap x <c-g>x
 
     " VISUAL SELECT模式 s-tab tab左右缩进
         xnoremap <            <gv

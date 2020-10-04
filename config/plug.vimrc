@@ -21,7 +21,7 @@
         " CocToggle
             nnoremap <expr> <F4> get(g:, 'coc_enabled', 0) == 1 ? ':CocDisable<cr>' : ':CocEnable<cr>'
         " 全局插件
-            let g:coc_global_extensions=['coc-css', 'coc-html', 'coc-tsserver', 'coc-java', 'coc-word', 'coc-explorer', 'coc-markdownlint', 'coc-pairs', 'coc-snippets', 'coc-tabnine', 'coc-translator', 'coc-git']
+            let g:coc_global_extensions=['coc-css', 'coc-html', 'coc-tsserver', 'coc-ccls', 'coc-clangd', 'coc-java', 'coc-word', 'coc-explorer', 'coc-markdownlint', 'coc-pairs', 'coc-snippets', 'coc-tabnine', 'coc-translator', 'coc-git']
         " com-rename
             nmap     <silent>       <F2>      <Plug>(coc-rename)
             nnoremap <silent>       <F9>     :CocCommand snippets.editSnippets<CR>
@@ -33,6 +33,8 @@
                 let l:col = col('.') - 1
                 return !l:col || getline('.')[l:col - 1] =~# '\s'
             endf
+        " coc format
+            command! -nargs=0 Format :call CocAction('format')
         " gd gy K
             nmap <silent> gd <Plug>(coc-definition)
             nmap <silent> gy <Plug>(coc-type-definition)
@@ -63,7 +65,7 @@
             smap <silent> v <c-g><Plug>(expand_region_expand)
             smap <silent> V <c-g><Plug>(expand_region_shrink)
 
-    " js-beautify  npm i js-beautify -g
+    " js-beautify
             let g:javascript_plugin_jsdoc = 1
             smap <silent> = <c-g>:!js-beautify<CR>
             xmap <silent> =      :!js-beautify<CR>
@@ -90,7 +92,6 @@
 
     " fzf
         " maps
-        " the_silver_searcher fd bat
             let g:fzf_preview_window = 'right:50%'
             let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
             let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.5 } }
@@ -137,3 +138,9 @@
             nmap <silent> ??           :NSetComment<CR>
             xmap <silent> /       :<c-u>VSetComment<CR>
             smap <silent> /  <c-g>:<c-u>VSetComment<CR>
+
+
+" some hook
+" ln -s ~/.config/coc/extensions/node_modules/coc-ccls/node_modules/ws/lib lib
+" sudo pacman -S the_silver_searcher fd bat
+" npm i js-beautify -g
