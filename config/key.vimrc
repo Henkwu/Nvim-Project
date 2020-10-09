@@ -12,7 +12,7 @@
         xnoremap <c-s>          :s/\v//gc<left><left><left><left>
         snoremap <c-s>     <c-g>:s/\v//gc<left><left><left><left>
 
-    " 只删除
+    " only change text
         snoremap          y     <c-g>y
         xnoremap          <BS>       "_d
         snoremap          <BS>  <c-g>"_d
@@ -34,7 +34,6 @@
     " S保存 Q退出 R重载vim配置 jj=esc
         command! W w !sudo tee > /dev/null %
         nnoremap <silent> S     :w<CR>
-        nnoremap <silent> <c-S> :W<CR>
         nnoremap <silent> Q     :q!<CR>
         nnoremap <silent> R     :source ~/.config/nvim/init.vim<CR>:echo 'reloaded'<CR>
         inoremap          jj    <Esc>l
