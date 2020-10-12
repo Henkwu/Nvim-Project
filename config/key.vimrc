@@ -125,10 +125,11 @@
         nnoremap s, <c-w>10<
 
 " buffers
-        nnoremap <silent> ss :bn<CR>
-        nnoremap <silent> sn :bn<CR>
-        nnoremap <silent> sp :bp<CR>
-        nnoremap <silent> W  :call <SID>delbuf()<CR>
+        nnoremap <silent> ss        :bn<CR>
+        nnoremap <silent> sp        :bp<CR>
+        nnoremap <silent> <c-left>  :bp<CR>
+        nnoremap <silent> <c-right> :bn<CR>
+        nnoremap <silent> W         :call <SID>delbuf()<CR>
         func! s:delbuf()
             :bd
             call SetTabline()
