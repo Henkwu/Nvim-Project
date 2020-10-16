@@ -97,12 +97,12 @@
         snoremap <silent> <m-k> <c-g>:m '<-2<CR>gv
 
     " alt + key 操作
-        inoremap <m-d> <Esc>ciw
-        inoremap <m-r> <Esc>ciw
+        inoremap <m-d> <Esc>"_ciw
+        inoremap <m-r> <Esc>"_ciw
         inoremap <m-o> <Esc>o
         inoremap <m-O> <Esc>O
-        nnoremap <m-d>      diw
-        nnoremap <m-r>      ciw
+        nnoremap <m-d>      "_diw
+        nnoremap <m-r>      "_ciw
 
 " windows
     " su 新左右窗口 sc关闭当前 so关闭其他 s方向切换
@@ -175,7 +175,7 @@
 " 折叠
     nnoremap <silent><expr> -- foldclosed(line('.')) == -1 ? ':call <SID>fold()<cr>' : 'za'
     xnoremap - zf
-    snoremap - <c-v>zf
+    snoremap - <c-g>zf
     func! s:fold()
         let l:line = trim(getline('.'))
         if l:line == ''
@@ -225,3 +225,7 @@
             exe 'norm! 0'
         endif
     endf
+
+" format
+    vnoremap <silent><expr> = index(['js', 'ts', 'json'], expand('%:e')) == -1 ? '=' : ':!js-beautify<CR>'
+    nnoremap <silent><expr> = index(['js', 'ts', 'json'], expand('%:e')) == -1 ? '=' : ':.!js-beautify<CR>'

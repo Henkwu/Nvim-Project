@@ -65,11 +65,8 @@
             smap <silent> v <c-g><Plug>(expand_region_expand)
             smap <silent> V <c-g><Plug>(expand_region_shrink)
 
-    " js-beautify
+    " js
             let g:javascript_plugin_jsdoc = 1
-            smap <silent> = <c-g>:!js-beautify<CR>
-            xmap <silent> =      :!js-beautify<CR>
-            nmap <silent> =      :.!js-beautify<CR>
 
     " rainbow & indentline
             let g:rainbow_active = 1
