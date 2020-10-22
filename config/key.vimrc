@@ -7,6 +7,10 @@
         nnoremap _ <c-x>
         nnoremap , @@
         
+    " cmap
+        cnoremap <c-a> <home>
+        cnoremap <c-e> <end>
+        
     " c-s = :%s/
         nnoremap <c-s>    :<c-u>%s/\v//gc<left><left><left><left>
         xnoremap <c-s>          :s/\v//gc<left><left><left><left>
