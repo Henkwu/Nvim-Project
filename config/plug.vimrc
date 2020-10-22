@@ -86,28 +86,40 @@
             let g:floaterm_height = 0.5
             nnoremap <silent> tu    :FloatermNew<CR>
             nnoremap <silent> tr    :FloatermNew ranger<CR>
+            au BufEnter * if &buftype == 'terminal' | :call timer_start(50, 'StartInsert', { 'repeat': 5 }) | endif
+            func! StartInsert(...)
+                startinsert!
+            endf
 
     " fzf
         " maps
             let g:fzf_preview_window = 'right:50%'
             let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
             let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.5 } }
-            nnoremap <silent> <c-a> :Ag<CR>
-            nnoremap <silent> <c-t> :Files<CR>
-            nnoremap <silent> <c-h> :History<CR>
-            nnoremap <silent> <c-l> :BLines<CR>
-            nnoremap <silent> <c-g> :GFiles?<CR>
-        " 开着coc-explorer时无法打开fzf
-            au User CocExplorerOpenPost nnoremap <c-a> <nop>
-            au User CocExplorerOpenPost nnoremap <c-t> <nop>
-            au User CocExplorerOpenPost nnoremap <c-h> <nop>
-            au User CocExplorerOpenPost nnoremap <c-l> <nop>
-            au User CocExplorerOpenPost nnoremap <c-g> <nop>
-            au User CocExplorerQuitPost nnoremap <silent> <c-a> :Ag<CR>
-            au User CocExplorerQuitPost nnoremap <silent> <c-t> :Files<CR>
-            au User CocExplorerQuitPost nnoremap <silent> <c-h> :History<CR>
-            au User CocExplorerQuitPost nnoremap <silent> <c-l> :BLines<CR>
-            au User CocExplorerQuitPost nnoremap <silent> <c-g> :GFiles?<CR>
+            nnoremap <silent>       <c-a> :Ag<CR>
+            nnoremap <silent>       <c-t> :Files<CR>
+            nnoremap <silent>       <c-h> :History<CR>
+            nnoremap <silent>       <c-l> :BLines<CR>
+            nnoremap <silent>       <c-g> :GFiles?<CR>
+            tnoremap <silent><expr> <cr>  &ft == "fzf" && empty(expand('<cWORD>')) == 0 ? "<c-\><c-n>:call <SID>addFzfHistory(expand('<cWORD>'))<cr>i<cr>" : "<cr>"
+            tnoremap <silent><expr> <c-n> &ft != "fzf" ? <c-n>" :
+                                            \ g:fzf_history_index + 1 >= len(g:fzf_histories) ? "" :
+                                            \ "<c-u><c-\><c-n>:call <SID>getFzfHistory(1)<cr>\"fpi"
+            tnoremap <silent><expr> <c-p> &ft != "fzf" ? <c-p>" :
+                                            \ g:fzf_history_index - 1 < 0 ? "" :
+                                            \ "<c-u><c-\><c-n>:call <SID>getFzfHistory(-1)<cr>\"fpi"
+            let g:fzf_histories = []
+            let g:fzf_history_index = 0
+            au VimEnter * let g:fzf_histories = split(getreg('f')) | let g:fzf_history_index = len(g:fzf_histories)
+            au VimLeavePre * call setreg('f', g:fzf_histories[:9])
+            fun! s:addFzfHistory(str)
+                call add(g:fzf_histories, a:str)
+                let g:fzf_history_index = len(g:fzf_histories)
+            endf
+            fun! s:getFzfHistory(delta)
+                let g:fzf_history_index = g:fzf_history_index + a:delta
+                call setreg('f', g:fzf_histories[g:fzf_history_index])
+            endf
 
     " 多游标
             let g:VM_theme                      = 'ocean'
@@ -123,7 +135,7 @@
             let g:VM_maps["Select h"]           = '<M-Left>'
             let g:VM_maps['Remove Region']      = 'q'
             let g:VM_maps['Increase']           = '+'
-            let g:VM_maps['Decrease']           = '-'
+            let g:VM_maps['Decrease']           = '_'
 
     " yaocccc
         " line
