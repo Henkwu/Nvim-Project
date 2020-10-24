@@ -18,40 +18,31 @@
 
 " Plug Setting
     " coc-vim
-        " CocToggle
-            nnoremap <expr> <F4> get(g:, 'coc_enabled', 0) == 1 ? ':CocDisable<cr>' : ':CocEnable<cr>'
-        " 全局插件
+        " 插件列表
             let g:coc_global_extensions=['coc-css', 'coc-html', 'coc-tsserver', 'coc-ccls', 'coc-clangd', 'coc-java', 'coc-word', 'coc-explorer', 'coc-markdownlint', 'coc-pairs', 'coc-snippets', 'coc-tabnine', 'coc-translator', 'coc-git']
-        " com-rename
+        " maps
             nmap     <silent>       <F2>      <Plug>(coc-rename)
-            nnoremap <silent>       <F9>     :CocCommand snippets.editSnippets<CR>
-            inoremap <silent><expr> <TAB>     pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
+            nmap     <silent>       gd        <Plug>(coc-definition)
+            nmap     <silent>       gy        <Plug>(coc-type-definition)
+            nmap     <silent>       K         :call CocAction("doHover")<cr>
+            nmap     <silent>       <c-e>     :<C-u>CocList diagnostics<cr>
+            nnoremap <silent>       <F9>      :CocCommand snippets.editSnippets<CR>
+            nnoremap <expr>         <F4>      get(g:, 'coc_enabled', 0) == 1 ? ':CocDisable<cr>' : ':CocEnable<cr>'
+            inoremap <silent><expr> <TAB>     pumvisible() ? "\<C-n>" : col('.') == 1 \|\| getline('.')[col('.') - 2] =~# '\s' ? "\<TAB>" : coc#refresh()
             inoremap <silent><expr> <S-TAB>   pumvisible() ? "\<C-p>" : "\<C-h>"
             inoremap <silent><expr> <c-space> coc#refresh()
             inoremap <silent><expr> <CR>      pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-            func! s:check_back_space() abort
-                let l:col = col('.') - 1
-                return !l:col || getline('.')[l:col - 1] =~# '\s'
-            endf
-        " coc format
-            command! -nargs=0 Format :call CocAction('format')
-        " gd gy K
-            nmap <silent> gd <Plug>(coc-definition)
-            nmap <silent> gy <Plug>(coc-type-definition)
-            nmap <silent> K  :call CocAction("doHover")<cr>
-        " Show all diagnostics.
-            nmap <silent><nowait> <c-e> :<C-u>CocList diagnostics<cr>
-        " coc-translator 显示翻译
-            nmap <silent> mm <Plug>(coc-translator-p)
-            xmap <silent> mm <Plug>(coc-translator-pv)
-            smap <silent> mm <c-g><Plug>(coc-translator-pv)
+        " coc-translator
+            nnoremap <silent> mm <Plug>(coc-translator-p)
+            xnoremap <silent> mm <Plug>(coc-translator-pv)
+            snoremap <silent> mm <c-g><Plug>(coc-translator-pv)
         " coc-git
-            nmap <silent> C         <Plug>(coc-git-commit)
-            nmap <silent> (         <Plug>(coc-git-prevchunk)
-            nmap <silent> )         <Plug>(coc-git-nextchunk)
-            nmap <silent> <leader>g <Plug>(coc-git-chunkinfo)
-            xmap <silent> ig        <Plug>(coc-git-chunk-inner)
-            xmap <silent> ag        <Plug>(coc-git-chunk-outer)
+            nnoremap <silent> C         <Plug>(coc-git-commit)
+            nnoremap <silent> (         <Plug>(coc-git-prevchunk)
+            nnoremap <silent> )         <Plug>(coc-git-nextchunk)
+            nnoremap <silent> <leader>g <Plug>(coc-git-chunkinfo)
+            xnoremap <silent> ig        <Plug>(coc-git-chunk-inner)
+            xnoremap <silent> ag        <Plug>(coc-git-chunk-outer)
         " coc-explorer
             nnoremap <silent> tt :CocCommand explorer --preset floating<CR>
             au User CocExplorerOpenPre  hi Pmenu ctermbg=NONE
@@ -84,8 +75,8 @@
             let g:floaterm_title = ''
             let g:floaterm_width = 0.8
             let g:floaterm_height = 0.5
-            nnoremap <silent> tu    :FloatermNew<CR>
-            nnoremap <silent> tr    :FloatermNew ranger<CR>
+            nnoremap <silent><expr> tu    ":FloatermNew! cd " . g:pwd . "<CR>"
+            nnoremap <silent>       tr    :FloatermNew ranger<CR>
             au BufEnter * if &buftype == 'terminal' | :call timer_start(50, 'StartInsert', { 'repeat': 5 }) | endif
             func! StartInsert(...)
                 startinsert!
@@ -101,15 +92,10 @@
             nnoremap <silent>       <c-h> :History<CR>
             nnoremap <silent>       <c-l> :BLines<CR>
             nnoremap <silent>       <c-g> :GFiles?<CR>
+        " fzf history c-n:next c-p:preview
             tnoremap <silent><expr> <cr>  &ft == "fzf" && empty(expand('<cWORD>')) == 0 ? "<c-\><c-n>:call <SID>addFzfHistory(expand('<cWORD>'))<cr>i<cr>" : "<cr>"
-            tnoremap <silent><expr> <c-n> &ft != "fzf" ? <c-n>" :
-                                            \ g:fzf_history_index + 1 >= len(g:fzf_histories) ? "" :
-                                            \ "<c-u><c-\><c-n>:call <SID>getFzfHistory(1)<cr>\"fpi"
-            tnoremap <silent><expr> <c-p> &ft != "fzf" ? <c-p>" :
-                                            \ g:fzf_history_index - 1 < 0 ? "" :
-                                            \ "<c-u><c-\><c-n>:call <SID>getFzfHistory(-1)<cr>\"fpi"
-            let g:fzf_histories = []
-            let g:fzf_history_index = 0
+            tnoremap <silent><expr> <c-n> &ft != "fzf" ? "<c-n>" : g:fzf_history_index + 1 >= len(g:fzf_histories) ? "" : "<c-u><c-\><c-n>:call <SID>getFzfHistory(1)<cr>\"fpi"
+            tnoremap <silent><expr> <c-p> &ft != "fzf" ? "<c-p>" : g:fzf_history_index - 1 < 0 ? "" : "<c-u><c-\><c-n>:call <SID>getFzfHistory(-1)<cr>\"fpi"
             au VimEnter * let g:fzf_histories = split(getreg('f')) | let g:fzf_history_index = len(g:fzf_histories)
             au VimLeavePre * call setreg('f', g:fzf_histories[:9])
             fun! s:addFzfHistory(str)
@@ -142,7 +128,7 @@
             let g:line_statuline_enable = 1
             let g:line_tabline_enable = 1
             let g:line_tabline_time_enable = 0
-            let g:line_modi_mark = '*'
+            let g:line_modi_mark = '+'
         " comment
             nmap <silent> ??           :NSetComment<CR>
             xmap <silent> /       :<c-u>VSetComment<CR>

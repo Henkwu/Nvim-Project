@@ -1,10 +1,9 @@
 " common
-    " 空格作为leader
         let mapleader=" "
+        let g:pwd = $PWD
+        let g:python3_host_prog = $PYTHON
 
 " setting
-    " python3支持
-        let g:python3_host_prog = $PYTHON
     " 设置命令提示 唯一标识 共享剪贴板
         set showcmd
         set encoding=utf-8

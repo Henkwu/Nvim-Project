@@ -1,8 +1,8 @@
 " common
     " 设置s t 无效 ;=: ,重复上一次宏操作
-        map s <nop>
-        map ; :
-        map ! :!
+        map      s <nop>
+        map      ; :
+        map      ! :!
         nnoremap + <c-a>
         nnoremap _ <c-x>
         nnoremap , @@
@@ -113,31 +113,18 @@
         nnoremap su       :vsp<CR>
         nnoremap sc       :close<CR>
         nnoremap so       :only<CR>
-        nnoremap s<Up>    <c-w>k
-        nnoremap s<Down>  <c-w>j
         nnoremap s<Left>  <c-w>h
         nnoremap s<Right> <c-w>l
-        nnoremap sk       <c-w>k
-        nnoremap sj       <c-w>j
-        nnoremap sh       <c-w>h
-        nnoremap sl       <c-w>l
-        " 窗口大小一致
-        nnoremap s= <c-w>=
-        " 窗口大小左右变大
-        nnoremap s. <c-w>10>
-        " 窗口大小左右变小
-        nnoremap s, <c-w>10<
+        nnoremap s=       <c-w>=
+        nnoremap s.       <c-w>10>
+        nnoremap s,       <c-w>10<
 
 " buffers
         nnoremap <silent> ss        :bn<CR>
         nnoremap <silent> sp        :bp<CR>
         nnoremap <silent> <c-left>  :bp<CR>
         nnoremap <silent> <c-right> :bn<CR>
-        nnoremap <silent> W         :call <SID>delbuf()<CR>
-        func! s:delbuf()
-            :bd
-            call SetTabline()
-        endf
+        nnoremap <silent><expr> W   ":bd \|call SetTabline()<CR>"
 
 " 一键运行文件
     command! Run  call <SID>runFile()
@@ -145,19 +132,12 @@
     inoremap <F5> <ESC>:Run<CR>
     func! s:runFile()
         exec "w"
-        if &filetype == 'javascript'
-            exec 'w !node %'
-        elseif &filetype == 'typescript'
-            exec 'w !ts-node %'
-        elseif &filetype == 'python'
-            exec 'w !python %'
-        elseif &filetype == 'go'
-            exec 'w !go run %'
-        elseif &filetype == 'java'
-            exec 'w !javac %'
-            exec 'w !java %<'
-        elseif &filetype == 'markdown'
-            exec 'MarkdownPreview'
+        if &filetype == 'javascript' | exec 'w !node %'
+        elseif &filetype == 'typescript' | exec 'w !ts-node %'
+        elseif &filetype == 'python' | exec 'w !python %'
+        elseif &filetype == 'go' | exec 'w !go run %'
+        elseif &filetype == 'java' | exec 'w !javac %' | exec 'w !java %<'
+        elseif &filetype == 'markdown' | exec 'MarkdownPreview'
         endif
     endf
 
@@ -182,9 +162,7 @@
     snoremap - <c-g>zf
     func! s:fold()
         let l:line = trim(getline('.'))
-        if l:line == ''
-            return
-        endif
+        if l:line == '' | return | endif
         let [l:up, l:down] = [0, 0]
         if l:line[0] == '}'
             exe 'norm! ^%'
@@ -219,11 +197,7 @@
     func! s:move()
         let [l:first, l:head] = [1, len(getline('.')) - len(substitute(getline('.'), '^\s*', '', 'g')) + 1]
         let l:before = col('.')
-        if l:before == l:first && l:first != l:head
-            exe 'norm! ^'
-        else
-            exe 'norm! $'
-        endif
+        exe l:before == l:first && l:first != l:head ? 'norm! ^' : 'norm! $'
         let l:after = col('.')
         if l:before == l:after
             exe 'norm! 0'
