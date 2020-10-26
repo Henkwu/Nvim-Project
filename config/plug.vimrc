@@ -75,7 +75,8 @@
             let g:floaterm_title = ''
             let g:floaterm_width = 0.8
             let g:floaterm_height = 0.5
-            nnoremap <silent><expr> <c-t> substitute(system('pwd'), '\n', '', '') == $PWD ? ":FloatermNew<CR>" : ":FloatermNew! cd " . $PWD . "<CR>"
+            let g:floaterm_autoclose = 1
+            nnoremap <silent><expr> <c-t> ":FloatermNew! cd " . $PWD . "<CR>"
             tnoremap <silent><expr> <c-t>  &ft == "floaterm" ? "<c-\><c-n>:FloatermKill!<CR>" : "<c-t>"
             au BufEnter * if &buftype == 'terminal' | :call timer_start(50, 'StartInsert', { 'repeat': 5 }) | endif
             func! StartInsert(...)
@@ -87,7 +88,6 @@
             let g:fzf_preview_window = 'right:50%'
             let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
             let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.5 } }
-            let g:floaterm_autoclose = 1
             nnoremap <silent>       <c-a> :Ag<CR>
             nnoremap <silent>       <c-p> :Files<CR>
             nnoremap <silent>       <c-h> :History<CR>
@@ -98,7 +98,7 @@
             tnoremap <silent><expr> <c-n> &ft != "fzf" ? "<c-n>" : g:fzf_history_index + 1 >= len(g:fzf_histories) ? "" : "<c-u><c-\><c-n>:call <SID>getFzfHistory(1)<CR>\"fpi"
             tnoremap <silent><expr> <c-p> &ft != "fzf" ? "<c-p>" : g:fzf_history_index - 1 < 0 ? "" : "<c-u><c-\><c-n>:call <SID>getFzfHistory(-1)<CR>\"fpi"
             au VimEnter * let g:fzf_histories = split(getreg('f')) | let g:fzf_history_index = len(g:fzf_histories)
-            au VimLeavePre * call setreg('f', g:fzf_histories[:9])
+            au VimLeavePre * call setreg('f', g:fzf_histories[-10:])
             fun! s:addFzfHistory(str)
                 call add(g:fzf_histories, a:str)
                 let g:fzf_history_index = len(g:fzf_histories)
