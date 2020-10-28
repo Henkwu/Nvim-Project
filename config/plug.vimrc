@@ -33,9 +33,9 @@
             inoremap <silent><expr> <c-space> coc#refresh()
             inoremap <silent><expr> <CR>      pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
         " coc-translator
-            nnoremap <silent> mm <Plug>(coc-translator-p)
-            xnoremap <silent> mm <Plug>(coc-translator-pv)
-            snoremap <silent> mm <c-g><Plug>(coc-translator-pv)
+            nmap <silent> mm <Plug>(coc-translator-p)
+            xmap <silent> mm <Plug>(coc-translator-pv)
+            smap <silent> mm <c-g><Plug>(coc-translator-pv)
         " coc-git
             nmap <silent> C         <Plug>(coc-git-commit)
             nmap <silent> (         <Plug>(coc-git-prevchunk)
@@ -94,12 +94,13 @@
             nnoremap <silent>       <c-l> :BLines<CR>
             nnoremap <silent>       <c-g> :GFiles?<CR>
         " fzf history c-n:next c-p:preview
-            tnoremap <silent><expr> <CR>  &ft == "fzf" && empty(expand('<cWORD>')) == 0 ? "<c-\><c-n>:call <SID>addFzfHistory(expand('<cWORD>'))<CR>i<CR>" : "<CR>"
+            tnoremap <silent><expr> <CR>  &ft == "fzf" ? "<c-\><c-n>:call <SID>addFzfHistory(expand('<cWORD>'))<CR>i<CR>" : "<CR>"
             tnoremap <silent><expr> <c-n> &ft != "fzf" ? "<c-n>" : g:fzf_history_index + 1 >= len(g:fzf_histories) ? "" : "<c-u><c-\><c-n>:call <SID>getFzfHistory(1)<CR>\"fpi"
             tnoremap <silent><expr> <c-p> &ft != "fzf" ? "<c-p>" : g:fzf_history_index - 1 < 0 ? "" : "<c-u><c-\><c-n>:call <SID>getFzfHistory(-1)<CR>\"fpi"
             au VimEnter * let g:fzf_histories = split(getreg('f')) | let g:fzf_history_index = len(g:fzf_histories)
             au VimLeavePre * call setreg('f', g:fzf_histories[-10:])
             fun! s:addFzfHistory(str)
+                if empty(a:str) == 1 || a:str =~ '╭─*╮' | return | endif
                 call add(g:fzf_histories, a:str)
                 let g:fzf_history_index = len(g:fzf_histories)
             endf

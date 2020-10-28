@@ -53,6 +53,7 @@
     "git.removedSign.text": "▁",
     "git.topRemovedSign.text": "▔",
     "git.changeRemovedSign.text": "≃",
+    "java.clean.workspace": true,
     "java.configuration.runtimes": [{
         "name": "JavaSE-14",
         "path": "/opt/jdk-14.0.2",
