@@ -30,7 +30,6 @@
         snoremap <silent> p     <c-g>:<c-u>exe col("'>") == col("$") && !<SID>isSelectLines() ? 'norm! gv"_dp' : 'norm! gv"_dP'<cr>
         xnoremap <silent> P          "_dP
         snoremap <silent> P     <c-g>"_dP
-        
         func! s:isSelectLines()
             return col("'<") == 1 && col("'>") == len(getline(line("'>"))) + 1
         endf
@@ -138,6 +137,7 @@
         elseif &filetype == 'go' | exec 'w !go run %'
         elseif &filetype == 'java' | exec 'w !javac %' | exec 'w !java %<'
         elseif &filetype == 'markdown' | exec 'MarkdownPreview'
+        elseif &filetype == 'c' | exec 'w !gcc % -o ' . expand('%:r') . ' && ./' . expand('%:r') . ' && rm ./' . expand('%:r')
         endif
     endf
 
