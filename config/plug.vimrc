@@ -37,12 +37,12 @@
             xmap <silent> mm <Plug>(coc-translator-pv)
             smap <silent> mm <c-g><Plug>(coc-translator-pv)
         " coc-git
-            nmap <silent> C         <Plug>(coc-git-commit)
             nmap <silent> (         <Plug>(coc-git-prevchunk)
             nmap <silent> )         <Plug>(coc-git-nextchunk)
-            nmap <silent> <leader>g <Plug>(coc-git-chunkinfo)
             xmap <silent> ig        <Plug>(coc-git-chunk-inner)
             xmap <silent> ag        <Plug>(coc-git-chunk-outer)
+            nmap <silent><expr> C   get(b:, 'coc_git_blame', '') ==# 'Not committed yet' ? "<Plug>(coc-git-chunkinfo)" : "<Plug>(coc-git-commit)"
+            nmap <silent> <leader>g :call coc#config('git.addGBlameToVirtualText',  !get(g:coc_user_config, 'git.addGBlameToVirtualText', 0))<CR>
         " coc-explorer
             nnoremap <silent> tt :CocCommand explorer --preset floating<CR>
             au User CocExplorerOpenPre  hi Pmenu ctermbg=NONE
@@ -132,9 +132,11 @@
             let g:line_tabline_time_enable = 0
             let g:line_modi_mark = '+'
         " comment
-            nmap <silent> ??           :NSetComment<CR>
-            xmap <silent> /       :<c-u>VSetComment<CR>
-            smap <silent> /  <c-g>:<c-u>VSetComment<CR>
+            nmap <silent> ?? :NToggleComment<CR>
+            xmap <silent> /  :<c-u>VToggleComment<CR>
+            smap <silent> /  <c-g>:<c-u>VToggleComment<CR>
+            xmap <silent> ?  :<c-u>CToggleComment<CR>
+            smap <silent> ?  <c-g>:<c-u>CToggleComment<CR>
 
 
 " some hook
