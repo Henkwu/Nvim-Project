@@ -132,10 +132,10 @@
             let g:line_tabline_time_enable = 0
             let g:line_modi_mark = '+'
         " comment
-            nmap <silent> ?? :NToggleComment<CR>
-            xmap <silent> /  :<c-u>VToggleComment<CR>
+            nmap <silent> ??           :NToggleComment<CR>
+            xmap <silent> /       :<c-u>VToggleComment<CR>
             smap <silent> /  <c-g>:<c-u>VToggleComment<CR>
-            xmap <silent> ?  :<c-u>CToggleComment<CR>
+            xmap <silent> ?       :<c-u>CToggleComment<CR>
             smap <silent> ?  <c-g>:<c-u>CToggleComment<CR>
 
 
