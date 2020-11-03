@@ -100,7 +100,7 @@
             au VimEnter * let g:fzf_histories = split(getreg('f')) | let g:fzf_history_index = len(g:fzf_histories)
             au VimLeavePre * call setreg('f', g:fzf_histories[-10:])
             fun! s:addFzfHistory(str)
-                if empty(a:str) == 1 || a:str =~ '╭─*╮' | return | endif
+                if empty(a:str) == 1 || a:str =~ '╭─*╮' || a:str =~ '^.*>' || a:str ==# g:fzf_histories[len(g:fzf_histories) == 0 ? 0 : len(g:fzf_histories) - 1] | return | endif
                 call add(g:fzf_histories, a:str)
                 let g:fzf_history_index = len(g:fzf_histories)
             endf
@@ -113,17 +113,23 @@
             let g:VM_theme                      = 'ocean'
             let g:VM_highlight_matches          = 'underline'
             let g:VM_maps                       = {}
-            let g:VM_maps['Find Under']         = '<c-n>'
-            let g:VM_maps['Find Subword Under'] = '<c-n>'
-            let g:VM_maps['Select All']         = '<c-d>'
-            let g:VM_maps['Visual All']         = '<c-d>'
-            let g:VM_maps["Select Cursor Down"] = '<M-Down>'
+            let g:VM_maps['Find Under']         = '<C-n>'
+            let g:VM_maps['Find Subword Under'] = '<C-n>'
+            let g:VM_maps['Select All']         = '<C-d>'
             let g:VM_maps["Select Cursor Up"]   = '<M-Up>'
+            let g:VM_maps["Select Cursor Down"] = '<M-Down>'
             let g:VM_maps["Select l"]           = '<M-Right>'
             let g:VM_maps["Select h"]           = '<M-Left>'
+            let g:VM_maps["Add Cursor Up"]      = '<C-Up>'
+            let g:VM_maps["Add Cursor Down"]    = '<C-Down>'
+            let g:VM_maps["Add Cursor At Pos"]  = '<C-x>'
+            let g:VM_maps["Add Cursor At Word"] = '<C-w>'
             let g:VM_maps['Remove Region']      = 'q'
             let g:VM_maps['Increase']           = '+'
             let g:VM_maps['Decrease']           = '_'
+            let g:VM_maps["Undo"]               = 'u'
+            let g:VM_maps["Redo"]               = '<C-r>'
+
 
     " yaocccc
         " line
