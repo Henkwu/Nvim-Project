@@ -88,6 +88,8 @@
             let g:fzf_preview_window = 'right:50%'
             let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
             let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.5 } }
+            if !exists('g:FZF_HISTORIES') | let g:FZF_HISTORIES = [] | endif
+            if !exists('g:FZF_HISTORY_INDEX') | let g:FZF_HISTORY_INDEX = 0 | endif
             nnoremap <silent>       <c-a> :Ag<CR>
             nnoremap <silent>       <c-p> :Files<CR>
             nnoremap <silent>       <c-h> :History<CR>
@@ -95,18 +97,18 @@
             nnoremap <silent>       <c-g> :GFiles?<CR>
         " fzf history c-n:next c-p:preview
             tnoremap <silent><expr> <CR>  &ft == "fzf" ? "<c-\><c-n>:call <SID>addFzfHistory(expand('<cWORD>'))<CR>i<CR>" : "<CR>"
-            tnoremap <silent><expr> <c-n> &ft != "fzf" ? "<c-n>" : g:fzf_history_index + 1 >= len(g:fzf_histories) ? "" : "<c-u><c-\><c-n>:call <SID>getFzfHistory(1)<CR>\"fpi"
-            tnoremap <silent><expr> <c-p> &ft != "fzf" ? "<c-p>" : g:fzf_history_index - 1 < 0 ? "" : "<c-u><c-\><c-n>:call <SID>getFzfHistory(-1)<CR>\"fpi"
-            au VimEnter * let g:fzf_histories = split(getreg('f')) | let g:fzf_history_index = len(g:fzf_histories)
-            au VimLeavePre * call setreg('f', g:fzf_histories[-10:])
+            tnoremap <silent><expr> <c-n> &ft != "fzf" ? "<c-n>" : g:FZF_HISTORY_INDEX + 1 >= len(g:FZF_HISTORIES) ? "" : "<c-u><c-\><c-n>:call <SID>getFzfHistory(1)<CR>\"*pi"
+            tnoremap <silent><expr> <c-p> &ft != "fzf" ? "<c-p>" : g:FZF_HISTORY_INDEX - 1 < 0 ? "" : "<c-u><c-\><c-n>:call <SID>getFzfHistory(-1)<CR>\"*pi"
             fun! s:addFzfHistory(str)
-                if empty(a:str) == 1 || a:str =~ '╭─*╮' || a:str =~ '^.*>' || a:str ==# g:fzf_histories[len(g:fzf_histories) == 0 ? 0 : len(g:fzf_histories) - 1] | return | endif
-                call add(g:fzf_histories, a:str)
-                let g:fzf_history_index = len(g:fzf_histories)
+                if empty(a:str) == 1 || a:str =~ '╭─*╮' || a:str =~ '^.*>' | return | endif
+                if len(g:FZF_HISTORIES) && g:FZF_HISTORIES[-1] ==# a:str | return | endif
+                call add(g:FZF_HISTORIES, a:str)
+                let g:FZF_HISTORIES = g:FZF_HISTORIES[-10:]
+                let g:FZF_HISTORY_INDEX = len(g:FZF_HISTORIES)
             endf
             fun! s:getFzfHistory(delta)
-                let g:fzf_history_index = g:fzf_history_index + a:delta
-                call setreg('f', g:fzf_histories[g:fzf_history_index])
+                let g:FZF_HISTORY_INDEX += a:delta
+                call setreg('*', g:FZF_HISTORIES[g:FZF_HISTORY_INDEX])
             endf
 
     " 多游标
