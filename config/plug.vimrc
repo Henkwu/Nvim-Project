@@ -130,8 +130,10 @@
         " line
             let g:line_statuline_enable = 1
             let g:line_tabline_enable = 1
-            let g:line_tabline_time_enable = 0
+            let g:line_tabline_show_pwd = 1
+            let g:line_tabline_show_time = 0
             let g:line_modi_mark = '+'
+            let g:line_pwd_suffix = '/'
         " comment
             nmap <silent> ??           :NToggleComment<CR>
             xmap <silent> /       :<c-u>VToggleComment<CR>
