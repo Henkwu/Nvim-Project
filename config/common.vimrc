@@ -1,6 +1,5 @@
 " common
         let mapleader=" "
-        let g:pwd = $PWD
         let g:python3_host_prog = $PYTHON
 
 " setting
@@ -9,8 +8,7 @@
         set encoding=utf-8
         let &t_ut=''
         set wildmenu
-        set nocompatible
-        set conceallevel=3
+        set conceallevel=0
         set clipboard=unnamed
         set clipboard+=unnamedplus
     " 搜索高亮 空格+回车 去除匹配高亮

@@ -1,5 +1,5 @@
 {
-    "snippets.userSnippetsDirectory": "$NVIM/snippets",
+    "snippets.userSnippetsDirectory": "~/.config/nvim/snippets",
     "tabnine.priority": 90,
     "pairs.enableCharacters": ["(", "[", "{", "'", "\"", "`"],
     "pairs.enableBackspace": true,

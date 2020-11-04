@@ -4,9 +4,7 @@
             Plug 'lfv89/vim-interestingwords'
             Plug 'mg979/vim-visual-multi', {'branch': 'master'}
             Plug 'luochen1990/rainbow'
-            Plug 'Yggdroot/indentLine'
             Plug 'iamcco/markdown-preview.vim', {'for': ['markdown', 'vim-plug']}
-            Plug 'pangloss/vim-javascript', {'for': ['javascript', 'vim-plug']}
             Plug 'neoclide/coc.nvim', {'branch': 'release'}
             Plug 'voldikss/vim-floaterm', { 'on': ['FloatermNew', 'FloatermToggle'] }
             Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -56,12 +54,8 @@
             smap <silent> v <c-g><Plug>(expand_region_expand)
             smap <silent> V <c-g><Plug>(expand_region_shrink)
 
-    " js
-            let g:javascript_plugin_jsdoc = 1
-
-    " rainbow & indentline
+    " rainbow
             let g:rainbow_active = 1
-            let g:indentLine_char_list = ['|', '¦']
 
     " 快速跳转 vim-interestingwords
         " 设置不同匹配词颜色不同
@@ -88,14 +82,14 @@
             let g:fzf_preview_window = 'right:50%'
             let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
             let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.5 } }
-            if !exists('g:FZF_HISTORIES') | let g:FZF_HISTORIES = [] | endif
-            if !exists('g:FZF_HISTORY_INDEX') | let g:FZF_HISTORY_INDEX = 0 | endif
             nnoremap <silent>       <c-a> :Ag<CR>
             nnoremap <silent>       <c-p> :Files<CR>
             nnoremap <silent>       <c-h> :History<CR>
             nnoremap <silent>       <c-l> :BLines<CR>
             nnoremap <silent>       <c-g> :GFiles?<CR>
         " fzf history c-n:next c-p:preview
+            let g:FZF_HISTORIES = get(g:, 'FZF_HISTORIES', [])
+            let g:FZF_HISTORY_INDEX = get(g:, 'FZF_HISTORY_INDEX', len(g:FZF_HISTORIES))
             tnoremap <silent><expr> <CR>  &ft == "fzf" ? "<c-\><c-n>:call <SID>addFzfHistory(expand('<cWORD>'))<CR>i<CR>" : "<CR>"
             tnoremap <silent><expr> <c-n> &ft != "fzf" ? "<c-n>" : g:FZF_HISTORY_INDEX + 1 >= len(g:FZF_HISTORIES) ? "" : "<c-u><c-\><c-n>:call <SID>getFzfHistory(1)<CR>\"*pi"
             tnoremap <silent><expr> <c-p> &ft != "fzf" ? "<c-p>" : g:FZF_HISTORY_INDEX - 1 < 0 ? "" : "<c-u><c-\><c-n>:call <SID>getFzfHistory(-1)<CR>\"*pi"
@@ -103,7 +97,7 @@
                 if empty(a:str) == 1 || a:str =~ '╭─*╮' || a:str =~ '^.*>' | return | endif
                 if len(g:FZF_HISTORIES) && g:FZF_HISTORIES[-1] ==# a:str | return | endif
                 call add(g:FZF_HISTORIES, a:str)
-                let g:FZF_HISTORIES = g:FZF_HISTORIES[-10:]
+                if len(g:FZF_HISTORIES) > 10 | let g:FZF_HISTORIES = g:FZF_HISTORIES[-10:] | endif
                 let g:FZF_HISTORY_INDEX = len(g:FZF_HISTORIES)
             endf
             fun! s:getFzfHistory(delta)
@@ -131,7 +125,6 @@
             let g:VM_maps['Decrease']           = '_'
             let g:VM_maps["Undo"]               = 'u'
             let g:VM_maps["Redo"]               = '<C-r>'
-
 
     " yaocccc
         " line
