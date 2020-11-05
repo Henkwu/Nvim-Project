@@ -4,6 +4,7 @@
             Plug 'lfv89/vim-interestingwords'
             Plug 'mg979/vim-visual-multi', {'branch': 'master'}
             Plug 'luochen1990/rainbow'
+            Plug 'pangloss/vim-javascript', {'for': ['javascript', 'vim-plug']}
             Plug 'iamcco/markdown-preview.vim', {'for': ['markdown', 'vim-plug']}
             Plug 'neoclide/coc.nvim', {'branch': 'release'}
             Plug 'voldikss/vim-floaterm', { 'on': ['FloatermNew', 'FloatermToggle'] }
@@ -56,6 +57,11 @@
 
     " rainbow
             let g:rainbow_active = 1
+
+    " vim-javascript
+            let g:javascript_plugin_jsdoc = 1
+            let g:javascript_plugin_ngdoc = 1
+            let g:javascript_plugin_flow = 1
 
     " 快速跳转 vim-interestingwords
         " 设置不同匹配词颜色不同
