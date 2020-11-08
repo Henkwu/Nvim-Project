@@ -1,11 +1,10 @@
 # nvim配置项目
 
-  简单梳理说明一下，按需自取
-  相对重要的我会用粗体标出来
+  简单梳理说明一下，按需自取, 相对重要的我会用粗体标出来
 
 ## 如何使用
 
-  1 将项目clone至 ~/config/nvim 目录中(注意备份好自己的配置)
+  1 将项目clone至 ~/config/nvim 目录中(注意备份好自己的配置)  
   2 nvim中允许 PlugInstall 命令，然后等待
 
 ## 配置结构
@@ -100,15 +99,15 @@ PS: 如果需要格式化js和ts代码，请手动安装: npm i js-beautify -g
 
 ### 插件简单说明以及键位绑定
 
-- terryma/vim-expand-region
+- [terryma/vim-expand-region](https://github.com/terryma/vim-expand-region)
   - v 扩展 visual 范围 例如我经常用的 vv 选中当前词，vvv选中""内的内容
   - V 缩小 sisual 范围
 
-- lfv89/vim-interestingwords
+- [lfv89/vim-interestingwords](https://github.com/lfv89/vim-interestingwords)
   - ff 高亮当前词(如果光标在高亮的词上可以用n/N跳转)  再次ff取消高亮
   - FF 取消全部高亮词
 
-- **mg979/vim-visual-multi**
+- [**mg979/vim-visual-multi**](https://github.com/mg979/vim-visual-multi)
   - 该插件非常NB，建议到对应的仓库仔细观摩
   - ctrl + up or down， 上下行添加光标(normal模式)(可用w e b $ ^ t f等等操作)
   - alt  + up or down， 上下行添加光标(visual模式)(esc 退出至多光标normal模式)
@@ -116,10 +115,10 @@ PS: 如果需要格式化js和ts代码，请手动安装: npm i js-beautify -g
   - ctrl + w 当前词首添加光标
   - q 取消当前光标
 
-- iamcco/markdown-preview.vim
+- [iamcco/markdown-preview.vim](https://github.com/iamcco/markdown-preview.vim)
   - F5 在浏览器预览markdown
 
-- **neoclide/coc.nvim**
+- [**neoclide/coc.nvim**](https://github.com/neoclide/coc.nvim)
   - 该插件非常NB，已经不能被称之为插件，而应被称之为插件平台, 建议好好研究
   - 全局的插件列表 let g:coc_global_extensions=['coc-css', 'coc-html', 'coc-tsserver', 'coc-ccls', 'coc-clangd', 'coc-java', 'coc-word', 'coc-explorer', 'coc-markdownlint', 'coc-pairs', 'coc-snippets', 'coc-tabnine', 'coc-translator', 'coc-git']
   - coc 通用快捷键
@@ -137,10 +136,10 @@ PS: 如果需要格式化js和ts代码，请手动安装: npm i js-beautify -g
     - leader - g 开启临时 git blame 显示
     - tt 打开 coc-expoler 文件管理器
 
-- voldikss/vim-floaterm
+- [voldikss/vim-floaterm](https://github.com/voldikss/vim-floaterm)
   - ctrl - t 打开关闭 浮动终端
 
-- **junegunn/fzf.vim**
+- [**junegunn/fzf.vim**](https://github.com/junegunn/fzf.vim)
   - 该插件非常NB。。。。
   - 注意要配合ag使用，请自己手动安装: the_silver_searcher fd bat
   - ctrl - a 全局文本搜索
@@ -152,15 +151,15 @@ PS: 如果需要格式化js和ts代码，请手动安装: npm i js-beautify -g
 
 - **yaocccc/...  自己写的三个插件的使用说明**
   - 建议到对应的仓库看一下
-  - yaocccc/vim-lines
+  - [yaocccc/vim-lines](https://github.com/yaocccc/vim-lines)
     - 采用默认配置即可
-  - yaocccc/vim-surround
+  - [yaocccc/vim-surround](https://github.com/yaocccc/vim-surround)
     - visual模式下 '"`({[]}) 会用对应的符号将选中区域包裹起来
     - normal模式下 ys + '"`({[]}) 会用对应的符号将当前词包裹起来
     - normal模式下 yS + '"`({[]}) 会用对应的符号将当前行包裹起来
     - normal模式下 ds + '"`({[]}) 会删除离光标最近的符号
     - normal模式下 cs + 符号1 + 符号2 会将 最近的 符号1 改为 符号2
-  - yaocccc/vim-comment
+  - [yaocccc/vim-comment](https://github.com/yaocccc/vim-comment)
     - normal模式下 ?? 行注释/反注释当前行
     - visual模式下 /  行注释/反注释当前块
     - visual模式下 ?  块注释/反注释当前块
