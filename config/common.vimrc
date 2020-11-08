@@ -1,4 +1,6 @@
 " common
+    " 设置leader为空格
+    " 设置python3对应的目录，你可以手动 export PYTHON=$(which python3) 到你的终端配置中
         let mapleader=" "
         let g:python3_host_prog = $PYTHON
 
@@ -6,7 +8,6 @@
     " 设置命令提示 唯一标识 共享剪贴板
         set showcmd
         set encoding=utf-8
-        let &t_ut=''
         set wildmenu
         set conceallevel=0
         set clipboard=unnamed
@@ -30,6 +31,7 @@
     " 错误无提示音 去除屏幕闪烁
         set vb
         set t_vb=""
+        set t_ut=""
         set hidden
     " 不换行
         set nowrap
@@ -62,7 +64,7 @@
     " 命令行高度始终为1 屏幕刷新间隔300
         set cmdheight=1
         set updatetime=300
-        set shortmess+=c
+        set shortmess+=cI
     " 屏幕顶部底部总是保留5行
         set scrolloff=5
     " 不显示模式
@@ -78,6 +80,6 @@
         set fillchars=vert:\|
         set fillchars=stl:\|
         set fillchars=stlnc:\|
-    " statusline & tabline
+    " 总是开启 statusline & tabline
         set laststatus=2
         set showtabline=2

@@ -7,7 +7,7 @@
             Plug 'pangloss/vim-javascript', {'for': ['javascript', 'vim-plug']}
             Plug 'iamcco/markdown-preview.vim', {'for': ['markdown', 'vim-plug']}
             Plug 'neoclide/coc.nvim', {'branch': 'release'}
-            Plug 'voldikss/vim-floaterm', { 'on': ['FloatermNew', 'FloatermToggle'] }
+            Plug 'voldikss/vim-floaterm', { 'on': ['FloatermToggle'] }
             Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
             Plug 'junegunn/fzf.vim'
             Plug 'yaocccc/vim-lines'
@@ -76,11 +76,15 @@
             let g:floaterm_width = 0.8
             let g:floaterm_height = 0.5
             let g:floaterm_autoclose = 1
-            nnoremap <silent><expr> <c-t> ":FloatermNew! cd " . $PWD . "<CR>"
-            tnoremap <silent><expr> <c-t>  &ft == "floaterm" ? "<c-\><c-n>:FloatermKill!<CR>" : "<c-t>"
+            nnoremap <silent>       <c-t> :call <SID>newFloaterm()<CR>
+            tnoremap <silent><expr> <c-t>  &ft == "floaterm" ? "<c-\><c-n>:FloatermToggle<CR>" : "<c-t>"
             au BufEnter * if &buftype == 'terminal' | :call timer_start(50, 'StartInsert', { 'repeat': 5 }) | endif
             func! StartInsert(...)
                 startinsert!
+            endf
+            func! s:newFloaterm()
+                try | call system("echo export VIM_TEM_DIR=" . $PWD ." >> " . $VIM_TEM_DIR_CACHE) | endtry
+                :FloatermToggle
             endf
 
     " fzf
@@ -134,12 +138,24 @@
 
     " yaocccc
         " line
-            let g:line_statuline_enable = 1
+            let g:line_statusline_enable = 1
             let g:line_tabline_enable = 1
             let g:line_tabline_show_pwd = 1
-            let g:line_tabline_show_time = 0
+            let g:line_tabline_show_time = 1
             let g:line_modi_mark = '+'
             let g:line_pwd_suffix = '/'
+            let g:line_statusline_getters = ['CocErrCount', 'GitInfo']
+            func! CocErrCount()
+                let l:info = get(b:, 'coc_diagnostic_info', {})
+                return printf(' E%d ', get(l:info, 'error', 0))
+            endf
+            func! GitInfo()
+                let l:head = get(g:, 'coc_git_status', '')
+                let l:head = l:head != '' ? printf(' %s ', l:head) : ''
+                let l:status = get(b:, 'coc_git_status', '')
+                let l:status = l:status != '' ? printf('%s ', trim(l:status)) : ''
+                return l:head . l:status
+            endf
         " comment
             nmap <silent> ??           :NToggleComment<CR>
             xmap <silent> /       :<c-u>VToggleComment<CR>

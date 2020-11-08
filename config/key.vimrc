@@ -131,7 +131,7 @@
     inoremap <F5> <ESC>:Run<CR>
     func! s:runFile()
         exec "w"
-        if &filetype == 'javascript' | exec 'w !node %'
+        if     &filetype == 'javascript' | exec 'w !node %'
         elseif &filetype == 'typescript' | exec 'w !ts-node %'
         elseif &filetype == 'python' | exec 'w !python %'
         elseif &filetype == 'go' | exec 'w !go run %'
