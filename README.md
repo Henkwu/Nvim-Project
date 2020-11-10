@@ -77,6 +77,7 @@
 | normal | tab                  | 在行首 第一个非空字符 行尾 跳转   |
 | normal | =                    | 格式化当前行                      |
 | visual | =                    | 格式化选中内容                    |
+
 PS: 如果需要格式化js和ts代码，请手动安装: npm i js-beautify -g
 
 ## plug.vimrc   插件相关的配置说明

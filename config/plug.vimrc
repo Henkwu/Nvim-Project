@@ -18,7 +18,7 @@
 " Plug Setting
     " coc-vim
         " 插件列表
-            let g:coc_global_extensions=['coc-css', 'coc-html', 'coc-tsserver', 'coc-ccls', 'coc-clangd', 'coc-java', 'coc-word', 'coc-explorer', 'coc-markdownlint', 'coc-pairs', 'coc-snippets', 'coc-tabnine', 'coc-translator', 'coc-git']
+            let g:coc_global_extensions=['coc-css', 'coc-html', 'coc-tsserver', 'coc-ccls', 'coc-clangd', 'coc-java', 'coc-word', 'coc-explorer', 'coc-markdownlint', 'coc-pairs', 'coc-snippets', 'coc-tabnine', 'coc-translator', 'coc-git', 'coc-vimlsp']
         " maps
             nmap     <silent>       <F2>      <Plug>(coc-rename)
             nmap     <silent>       gd        <Plug>(coc-definition)
@@ -93,6 +93,7 @@
             let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
             let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.5 } }
             nnoremap <silent>       <c-a> :Ag<CR>
+            nnoremap <silent>       <c-b> :Buffers<CR>
             nnoremap <silent>       <c-p> :Files<CR>
             nnoremap <silent>       <c-h> :History<CR>
             nnoremap <silent>       <c-l> :BLines<CR>
@@ -141,7 +142,7 @@
             let g:line_statusline_enable = 1
             let g:line_tabline_enable = 1
             let g:line_tabline_show_pwd = 1
-            let g:line_tabline_show_time = 1
+            let g:line_tabline_show_time = 0
             let g:line_modi_mark = '+'
             let g:line_pwd_suffix = '/'
             let g:line_statusline_getters = ['CocErrCount', 'GitInfo']

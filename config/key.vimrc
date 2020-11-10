@@ -18,6 +18,7 @@
 
     " only change text
         snoremap          y     <c-g>y
+        snoremap          d     <c-g>d
         xnoremap          <BS>       "_d
         snoremap          <BS>  <c-g>"_d
         nnoremap          x          "_x
@@ -136,7 +137,7 @@
         elseif &filetype == 'python' | exec 'w !python %'
         elseif &filetype == 'go' | exec 'w !go run %'
         elseif &filetype == 'java' | exec 'w !javac %' | exec 'w !java %<'
-        elseif &filetype == 'markdown' | exec 'MarkdownPreview'
+        elseif &filetype == 'markdown' | exec 'MarkdownPreview' | exec 'MarkdownPreviewStop' | exec 'MarkdownPreview'
         elseif &filetype == 'c' | exec 'w !gcc % -o ' . expand('%:r') . ' && ./' . expand('%:r') . ' && rm ./' . expand('%:r')
         endif
     endf
