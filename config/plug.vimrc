@@ -18,7 +18,17 @@
 " Plug Setting
     " coc-vim
         " 插件列表
-            let g:coc_global_extensions=['coc-css', 'coc-html', 'coc-tsserver', 'coc-ccls', 'coc-clangd', 'coc-java', 'coc-word', 'coc-explorer', 'coc-markdownlint', 'coc-pairs', 'coc-snippets', 'coc-tabnine', 'coc-translator', 'coc-git', 'coc-vimlsp']
+            let g:coc_global_extensions=[
+                \ 'coc-tsserver',
+                \ 'coc-html', 'coc-css',
+                \ 'coc-ccls', 'coc-clangd',
+                \ 'coc-vimlsp',
+                \ 'coc-sh',
+                \ 'coc-java',
+                \ 'coc-pairs', 'coc-snippets', 'coc-tabnine',
+                \ 'coc-word',  'coc-markdownlint', 
+                \ 'coc-translator', 'coc-explorer', 'coc-git'
+                \ ]
         " maps
             nmap     <silent>       <F2>      <Plug>(coc-rename)
             nmap     <silent>       gd        <Plug>(coc-definition)
@@ -83,7 +93,7 @@
                 startinsert!
             endf
             func! s:newFloaterm()
-                try | call system("echo export VIM_TEM_DIR=" . $PWD ." >> " . $VIM_TEM_DIR_CACHE) | endtry
+                try | call system("~/scripts/edit-profile.sh VIM_TEM_DIR ".$PWD) | endtry
                 :FloatermToggle
             endf
 
