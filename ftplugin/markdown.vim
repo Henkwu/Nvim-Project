@@ -3,7 +3,7 @@ augroup markdown
     au BufEnter *.md call <SID>setOfMD()
 augroup END
 
-func! s:setOfMD()
+fun! s:setOfMD()
     setlocal shiftwidth=2
     setlocal softtabstop=2
     setlocal tabstop=2
@@ -18,7 +18,7 @@ func! s:setOfMD()
     xnoremap <silent><buffer> `      :<c-u>call SurroundVaddPairs("```", "```", 0)<cr>
 endf
 
-func! s:toggleTodoStatus()
+fun! s:toggleTodoStatus()
     let line = getline('.')
     if line =~ glob2regpat('*- \[ \]*')
         call setline('.', substitute(line, '\[ \]', '[x]', ''))

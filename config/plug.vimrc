@@ -42,78 +42,71 @@
             inoremap <silent><expr> <c-space> coc#refresh()
             inoremap <silent><expr> <CR>      pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
         " coc-translator
-            nmap <silent> mm <Plug>(coc-translator-p)
-            xmap <silent> mm <Plug>(coc-translator-pv)
-            smap <silent> mm <c-g><Plug>(coc-translator-pv)
+            nmap     <silent>       mm        <Plug>(coc-translator-p)
+            xmap     <silent>       mm        <Plug>(coc-translator-pv)
+            smap     <silent>       mm        <c-g><Plug>(coc-translator-pv)
         " coc-git
-            nmap <silent> (         <Plug>(coc-git-prevchunk)
-            nmap <silent> )         <Plug>(coc-git-nextchunk)
-            xmap <silent> ig        <Plug>(coc-git-chunk-inner)
-            xmap <silent> ag        <Plug>(coc-git-chunk-outer)
-            nmap <silent><expr> C   get(b:, 'coc_git_blame', '') ==# 'Not committed yet' ? "<Plug>(coc-git-chunkinfo)" : "<Plug>(coc-git-commit)"
-            nmap <silent> <leader>g :call coc#config('git.addGBlameToVirtualText',  !get(g:coc_user_config, 'git.addGBlameToVirtualText', 0))<CR>
-        " coc-explorer
-            nnoremap <silent> tt :CocCommand explorer --preset floating<CR>
+            nmap     <silent>       (         <Plug>(coc-git-prevchunk)
+            nmap     <silent>       )         <Plug>(coc-git-nextchunk)
+            xmap     <silent>       ig        <Plug>(coc-git-chunk-inner)
+            xmap     <silent>       ag        <Plug>(coc-git-chunk-outer)
+            nmap     <silent><expr> C         get(b:, 'coc_git_blame', '') ==# 'Not committed yet' ? "<Plug>(coc-git-chunkinfo)" : "<Plug>(coc-git-commit)"
+            nmap     <silent>       <leader>g :call coc#config('git.addGBlameToVirtualText',  !get(g:coc_user_config, 'git.addGBlameToVirtualText', 0))<CR>
+        " coc-explorer    
+            nnoremap <silent>       tt        :CocCommand explorer --preset floating<CR>
             au User CocExplorerOpenPre  hi Pmenu ctermbg=NONE
             au User CocExplorerQuitPost hi Pmenu ctermbg=238
-            au User CocExplorerQuitPost echo
+            au User CocExplorerQuitPost echo    
+                
+    " vim-expand-region 快速选择      
+        " v扩大选择 V缩小选择         
+            xmap     <silent>       v         <Plug>(expand_region_expand)
+            xmap     <silent>       V         <Plug>(expand_region_shrink)
+            smap     <silent>       v         <c-g><Plug>(expand_region_expand)
+            smap     <silent>       V         <c-g><Plug>(expand_region_shrink)
 
-    " vim-expand-region 快速选择
-        " v扩大选择 V缩小选择
-            xmap <silent> v <Plug>(expand_region_expand)
-            xmap <silent> V <Plug>(expand_region_shrink)
-            smap <silent> v <c-g><Plug>(expand_region_expand)
-            smap <silent> V <c-g><Plug>(expand_region_shrink)
-
-    " rainbow
-            let g:rainbow_active = 1
-
-    " vim-javascript
-            let g:javascript_plugin_jsdoc = 1
-            let g:javascript_plugin_ngdoc = 1
-            let g:javascript_plugin_flow = 1
-
-    " 快速跳转 vim-interestingwords
-        " 设置不同匹配词颜色不同
+    " rainbow                     
+            let g:rainbow_active = 1          
+                        
+    " vim-javascript                        
+            let g:javascript_plugin_jsdoc = 1   
+            let g:javascript_plugin_ngdoc = 1   
+            let g:javascript_plugin_flow = 1    
+                        
+    " 快速跳转 vim-interestingwords           
+        " 设置不同匹配词颜色不同              
             let g:interestingWordsRandomiseColors = 1
-            nnoremap <silent> ff    :call InterestingWords('n')<CR>
-            nnoremap <silent> FF    :call UncolorAllWords()<CR>
-            nnoremap <silent> n     :call WordNavigation('forward')<CR>
-            nnoremap <silent> N     :call WordNavigation('backward')<CR>
-
-    " Floaterm
-            let g:floaterm_title = ''
-            let g:floaterm_width = 0.8
-            let g:floaterm_height = 0.5
-            let g:floaterm_autoclose = 1
-            nnoremap <silent>       <c-t> :call <SID>newFloaterm()<CR>
-            tnoremap <silent><expr> <c-t>  &ft == "floaterm" ? "<c-\><c-n>:FloatermToggle<CR>" : "<c-t>"
-            au BufEnter * if &buftype == 'terminal' | :call timer_start(50, 'StartInsert', { 'repeat': 5 }) | endif
-            func! StartInsert(...)
-                startinsert!
-            endf
-            func! s:newFloaterm()
-                try | call system("~/scripts/edit-profile.sh VIM_TEM_DIR ".$PWD) | endtry
-                :FloatermToggle
-            endf
+            nnoremap <silent>       ff        :call InterestingWords('n')<CR>
+            nnoremap <silent>       FF        :call UncolorAllWords()<CR>
+            nnoremap <silent>       n         :call WordNavigation('forward')<CR>
+            nnoremap <silent>       N         :call WordNavigation('backward')<CR>
+            
+    " Floaterm         
+            let g:floaterm_title = ''        
+            let g:floaterm_width = 0.8        
+            let g:floaterm_height = 0.5       
+            let g:floaterm_autoclose = 1     
+            nnoremap <silent>       <c-t>     :try \| call system("~/scripts/edit-profile.sh VIM_TEM_DIR ".$PWD) \| endtry \| FloatermToggle<CR>
+            tnoremap <silent><expr> <c-t>     &ft == "floaterm" ? "<c-\><c-n>:FloatermToggle<CR>" : "<c-t>"
+            au BufEnter * if &buftype == 'terminal' | :call timer_start(50, { -> execute('startinsert!') }, { 'repeat': 5 }) | endif
 
     " fzf
         " maps
             let g:fzf_preview_window = 'right:50%'
             let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
             let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.5 } }
-            nnoremap <silent>       <c-a> :Ag<CR>
-            nnoremap <silent>       <c-b> :Buffers<CR>
-            nnoremap <silent>       <c-p> :Files<CR>
-            nnoremap <silent>       <c-h> :History<CR>
-            nnoremap <silent>       <c-l> :BLines<CR>
-            nnoremap <silent>       <c-g> :GFiles?<CR>
+            nnoremap <silent>       <c-a>     :Ag<CR>
+            nnoremap <silent>       <c-b>     :Buffers<CR>
+            nnoremap <silent>       <c-p>     :Files<CR>
+            nnoremap <silent>       <c-h>     :History<CR>
+            nnoremap <silent>       <c-l>     :BLines<CR>
+            nnoremap <silent>       <c-g>     :GFiles?<CR>
         " fzf history c-n:next c-p:preview
             let g:FZF_HISTORIES = get(g:, 'FZF_HISTORIES', [])
             let g:FZF_HISTORY_INDEX = get(g:, 'FZF_HISTORY_INDEX', len(g:FZF_HISTORIES))
-            tnoremap <silent><expr> <CR>  &ft == "fzf" ? "<c-\><c-n>:call <SID>addFzfHistory(expand('<cWORD>'))<CR>i<CR>" : "<CR>"
-            tnoremap <silent><expr> <c-n> &ft != "fzf" ? "<c-n>" : g:FZF_HISTORY_INDEX + 1 >= len(g:FZF_HISTORIES) ? "" : "<c-u><c-\><c-n>:call <SID>getFzfHistory(1)<CR>\"*pi"
-            tnoremap <silent><expr> <c-p> &ft != "fzf" ? "<c-p>" : g:FZF_HISTORY_INDEX - 1 < 0 ? "" : "<c-u><c-\><c-n>:call <SID>getFzfHistory(-1)<CR>\"*pi"
+            tnoremap <silent><expr> <CR>      &ft == "fzf" ? "<c-\><c-n>:call <SID>addFzfHistory(expand('<cWORD>'))<CR>i<CR>" : "<CR>"
+            tnoremap <silent><expr> <c-n>     &ft != "fzf" ? "<c-n>" : g:FZF_HISTORY_INDEX + 1 >= len(g:FZF_HISTORIES) ? "" : "<c-u><c-\><c-n>:call <SID>getFzfHistory(1)<CR>\"*pi"
+            tnoremap <silent><expr> <c-p>     &ft != "fzf" ? "<c-p>" : g:FZF_HISTORY_INDEX - 1 < 0 ? "" : "<c-u><c-\><c-n>:call <SID>getFzfHistory(-1)<CR>\"*pi"
             fun! s:addFzfHistory(str)
                 if empty(a:str) == 1 || a:str =~ '╭─*╮' || a:str =~ '^.*>' | return | endif
                 if len(g:FZF_HISTORIES) && g:FZF_HISTORIES[-1] ==# a:str | return | endif
@@ -152,21 +145,12 @@
             let g:line_statusline_enable = 1
             let g:line_tabline_enable = 1
             let g:line_tabline_show_pwd = 1
-            let g:line_tabline_show_time = 0
+            let g:line_tabline_show_time = 1
             let g:line_modi_mark = '+'
             let g:line_pwd_suffix = '/'
             let g:line_statusline_getters = ['CocErrCount', 'GitInfo']
-            func! CocErrCount()
-                let l:info = get(b:, 'coc_diagnostic_info', {})
-                return printf(' E%d ', get(l:info, 'error', 0))
-            endf
-            func! GitInfo()
-                let l:head = get(g:, 'coc_git_status', '')
-                let l:head = l:head != '' ? printf(' %s ', l:head) : ''
-                let l:status = get(b:, 'coc_git_status', '')
-                let l:status = l:status != '' ? printf('%s ', trim(l:status)) : ''
-                return l:head . l:status
-            endf
+            let g:CocErrCount = { -> printf(' E%d ', get(get(b:, 'coc_diagnostic_info', {}), 'error', 0)) }
+            let g:GitInfo = { -> substitute(substitute(printf(' %s %s ', get(g:, 'coc_git_status', ''), get(b:, 'coc_git_status', '')), '\v\s{2,}', ' ', 'g'), '^\s*$', '', '') }
         " comment
             nmap <silent> ??           :NToggleComment<CR>
             xmap <silent> /       :<c-u>VToggleComment<CR>

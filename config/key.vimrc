@@ -10,6 +10,15 @@
     " cmap
         cnoremap <c-a> <home>
         cnoremap <c-e> <end>
+
+    " smap
+        snoremap d     <c-g>d
+        snoremap y     <c-g>y
+        snoremap u     <c-g>u
+        snoremap U     <c-g>U
+        snoremap x     <c-g>"_x
+        snoremap c     <c-g>"_c
+        snoremap <BS>  <c-g>"_d
         
     " c-s = :%s/
         nnoremap <c-s>    :<c-u>%s/\v//gc<left><left><left><left>
@@ -17,23 +26,16 @@
         snoremap <c-s>     <c-g>:s/\v//gc<left><left><left><left>
 
     " only change text
-        snoremap          y     <c-g>y
-        snoremap          d     <c-g>d
         xnoremap          <BS>       "_d
-        snoremap          <BS>  <c-g>"_d
         nnoremap          x          "_x
         xnoremap          x          "_x
-        snoremap          x     <c-g>"_x
         nnoremap          Y           y$
         xnoremap          c          "_c
-        snoremap <silent> c     <c-g>"_c
-        xnoremap <silent> p          :<c-u>exe col("'>") == col("$") && !<SID>isSelectLines() ? 'norm! gv"_dp' : 'norm! gv"_dP'<cr>
-        snoremap <silent> p     <c-g>:<c-u>exe col("'>") == col("$") && !<SID>isSelectLines() ? 'norm! gv"_dp' : 'norm! gv"_dP'<cr>
+        xnoremap <silent> p          :<c-u>exe col("'>") == col("$") && SelectedIsLines() == 0 ? 'norm! gv"_dp' : 'norm! gv"_dP'<cr>
+        snoremap <silent> p     <c-g>:<c-u>exe col("'>") == col("$") && SelectedIsLines() == 0 ? 'norm! gv"_dp' : 'norm! gv"_dP'<cr>
         xnoremap <silent> P          "_dP
         snoremap <silent> P     <c-g>"_dP
-        func! s:isSelectLines()
-            return col("'<") == 1 && col("'>") == len(getline(line("'>"))) + 1
-        endf
+        let SelectedIsLines = { -> col("'<") == 1 && col("'>") == len(getline(line("'>"))) + 1 }
 
     " S保存 Q退出 R重载vim配置 jj=esc
         command! W w !sudo tee > /dev/null %
@@ -130,7 +132,7 @@
     command! Run  call <SID>runFile()
     noremap  <F5> :Run<CR>
     inoremap <F5> <ESC>:Run<CR>
-    func! s:runFile()
+    fun! s:runFile()
         exec "w"
         if     &filetype == 'javascript' | exec 'w !node %'
         elseif &filetype == 'typescript' | exec 'w !ts-node %'
@@ -144,7 +146,7 @@
 
 " 重设tab长度
     command! -nargs=* SetTab call <SID>switchTab(<q-args>)
-    func! s:switchTab(tab_len)
+    fun! s:switchTab(tab_len)
         if !empty(a:tab_len)
             let [&shiftwidth, &softtabstop, &tabstop] = [a:tab_len, a:tab_len, a:tab_len]
         else
@@ -161,7 +163,7 @@
     nnoremap <silent><expr> -- foldclosed(line('.')) == -1 ? ':call <SID>fold()<cr>' : 'za'
     xnoremap - zf
     snoremap - <c-g>zf
-    func! s:fold()
+    fun! s:fold()
         let l:line = trim(getline('.'))
         if l:line == '' | return | endif
         let [l:up, l:down] = [0, 0]
@@ -195,7 +197,7 @@
     nnoremap 0 %
     vnoremap 0 %
 
-    func! s:move()
+    fun! s:move()
         let [l:first, l:head] = [1, len(getline('.')) - len(substitute(getline('.'), '^\s*', '', 'g')) + 1]
         let l:before = col('.')
         exe l:before == l:first && l:first != l:head ? 'norm! ^' : 'norm! $'
