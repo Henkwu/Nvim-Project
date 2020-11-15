@@ -4,8 +4,8 @@
 
 ## 如何使用
 
-  1 将项目clone至 ~/config/nvim 目录中(注意备份好自己的配置)  
-  2 nvim中允许 PlugInstall 命令，然后等待
+  1 将项目clone至 ~/.config/nvim 目录中(注意备份好自己的配置)  
+  2 nvim中运行 PlugInstall 命令，然后等待
 
 ## 配置结构
 
