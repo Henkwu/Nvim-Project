@@ -6,6 +6,10 @@
         nnoremap + <c-a>
         nnoremap _ <c-x>
         nnoremap , @@
+
+    "
+        nnoremap <BS>  ciw
+        inoremap <c-z> <esc>u
         
     " cmap
         cnoremap <c-a> <home>

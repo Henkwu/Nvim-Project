@@ -43,6 +43,9 @@
 | normal | +                    | 数字自增                          |
 | normal | _                    | 数字自减                          |
 | normal | ,                    | 重复上一次宏操作                  |
+| normal | space - enter        | 清除当前搜索词高亮                |
+| normal | backspace            | 删除当前词并插入                  |
+| insert | ctrl - z             | 撤销最后修改并退出编辑            |
 | command| ctrl - a             | Home                              |
 | command| ctrl - e             | End                               |
 | all    | ctrl - s             | 进入替换模式                      |
@@ -58,7 +61,7 @@
 | all    | ctrl - u             | 清空本行                          |
 | all    | alt - jk             | 上下移动当前行/块                 |
 | all    | alt - d              | 删除当前词                        |
-| all    | alt - r              | 删除当前次并插入                  |
+| all    | alt - r              | 删除当前词并插入                  |
 | all    | alt - o              | 下方新起一行                      |
 | all    | alt - O              | 上方新起一行                      |
 | normal | su                   | 左右分屏                          |
@@ -101,7 +104,7 @@ PS: 如果需要格式化js和ts代码，请手动安装: npm i js-beautify -g
 ### 插件简单说明以及键位绑定
 
 - [terryma/vim-expand-region](https://github.com/terryma/vim-expand-region)
-  - v 扩展 visual 范围 例如我经常用的 vv 选中当前词，vvv选中""内的内容
+  - v 扩展 visual 范围 例如我经常用的 vv 选中当前词，vvv选中"xxx"内的内容
   - V 缩小 sisual 范围
 
 - [lfv89/vim-interestingwords](https://github.com/lfv89/vim-interestingwords)
@@ -109,7 +112,7 @@ PS: 如果需要格式化js和ts代码，请手动安装: npm i js-beautify -g
   - FF 取消全部高亮词
 
 - [**mg979/vim-visual-multi**](https://github.com/mg979/vim-visual-multi)
-  - 该插件非常NB，建议到对应的仓库仔细观摩
+  - 建议到对应的仓库看一下
   - ctrl + up or down， 上下行添加光标(normal模式)(可用w e b $ ^ t f等等操作)
   - alt  + up or down， 上下行添加光标(visual模式)(esc 退出至多光标normal模式)
   - ctrl + x 当前位置添加光标
@@ -120,7 +123,7 @@ PS: 如果需要格式化js和ts代码，请手动安装: npm i js-beautify -g
   - F5 在浏览器预览markdown
 
 - [**neoclide/coc.nvim**](https://github.com/neoclide/coc.nvim)
-  - 该插件非常NB，已经不能被称之为插件，而应被称之为插件平台, 建议好好研究
+  - 建议到对应的仓库看一下
   - 全局的插件列表 let g:coc_global_extensions=['coc-css', 'coc-html', 'coc-tsserver', 'coc-ccls', 'coc-clangd', 'coc-java', 'coc-word', 'coc-explorer', 'coc-markdownlint', 'coc-pairs', 'coc-snippets', 'coc-tabnine', 'coc-translator', 'coc-git']
   - coc 通用快捷键
     - tab/s-tab 上下 选择候选项
@@ -141,7 +144,6 @@ PS: 如果需要格式化js和ts代码，请手动安装: npm i js-beautify -g
   - ctrl - t 打开关闭 浮动终端
 
 - [**junegunn/fzf.vim**](https://github.com/junegunn/fzf.vim)
-  - 该插件非常NB。。。。
   - 注意要配合ag使用，请自己手动安装: the_silver_searcher fd bat
   - ctrl - a 全局文本搜索
   - ctrl - l 当前文件文本搜索

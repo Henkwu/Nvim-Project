@@ -25,8 +25,9 @@
                 \ 'coc-vimlsp',
                 \ 'coc-sh',
                 \ 'coc-java',
+                \ 'coc-json',
                 \ 'coc-pairs', 'coc-snippets', 'coc-tabnine',
-                \ 'coc-word',  'coc-markdownlint', 
+                \ 'coc-word',  'coc-markdownlint',
                 \ 'coc-translator', 'coc-explorer', 'coc-git'
                 \ ]
         " maps
@@ -52,40 +53,40 @@
             xmap     <silent>       ag        <Plug>(coc-git-chunk-outer)
             nmap     <silent><expr> C         get(b:, 'coc_git_blame', '') ==# 'Not committed yet' ? "<Plug>(coc-git-chunkinfo)" : "<Plug>(coc-git-commit)"
             nmap     <silent>       <leader>g :call coc#config('git.addGBlameToVirtualText',  !get(g:coc_user_config, 'git.addGBlameToVirtualText', 0))<CR>
-        " coc-explorer    
+        " coc-explorer
             nnoremap <silent>       tt        :CocCommand explorer --preset floating<CR>
             au User CocExplorerOpenPre  hi Pmenu ctermbg=NONE
             au User CocExplorerQuitPost hi Pmenu ctermbg=238
-            au User CocExplorerQuitPost echo    
-                
-    " vim-expand-region 快速选择      
-        " v扩大选择 V缩小选择         
+            au User CocExplorerQuitPost echo
+
+    " vim-expand-region 快速选择
+        " v扩大选择 V缩小选择
             xmap     <silent>       v         <Plug>(expand_region_expand)
             xmap     <silent>       V         <Plug>(expand_region_shrink)
             smap     <silent>       v         <c-g><Plug>(expand_region_expand)
             smap     <silent>       V         <c-g><Plug>(expand_region_shrink)
 
-    " rainbow                     
-            let g:rainbow_active = 1          
-                        
-    " vim-javascript                        
-            let g:javascript_plugin_jsdoc = 1   
-            let g:javascript_plugin_ngdoc = 1   
-            let g:javascript_plugin_flow = 1    
-                        
-    " 快速跳转 vim-interestingwords           
-        " 设置不同匹配词颜色不同              
+    " rainbow
+            let g:rainbow_active = 1
+
+    " vim-javascript
+            let g:javascript_plugin_jsdoc = 1
+            let g:javascript_plugin_ngdoc = 1
+            let g:javascript_plugin_flow = 1
+
+    " 快速跳转 vim-interestingwords
+        " 设置不同匹配词颜色不同
             let g:interestingWordsRandomiseColors = 1
             nnoremap <silent>       ff        :call InterestingWords('n')<CR>
             nnoremap <silent>       FF        :call UncolorAllWords()<CR>
             nnoremap <silent>       n         :call WordNavigation('forward')<CR>
             nnoremap <silent>       N         :call WordNavigation('backward')<CR>
-            
-    " Floaterm         
-            let g:floaterm_title = ''        
-            let g:floaterm_width = 0.8        
-            let g:floaterm_height = 0.5       
-            let g:floaterm_autoclose = 1     
+
+    " Floaterm
+            let g:floaterm_title = ''
+            let g:floaterm_width = 0.8
+            let g:floaterm_height = 0.5
+            let g:floaterm_autoclose = 1
             nnoremap <silent>       <c-t>     :try \| call system("~/scripts/edit-profile.sh VIM_TEM_DIR ".$PWD) \| endtry \| FloatermToggle<CR>
             tnoremap <silent><expr> <c-t>     &ft == "floaterm" ? "<c-\><c-n>:FloatermToggle<CR>" : "<c-t>"
             au BufEnter * if &buftype == 'terminal' | :call timer_start(50, { -> execute('startinsert!') }, { 'repeat': 5 }) | endif
@@ -96,7 +97,6 @@
             let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
             let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.5 } }
             nnoremap <silent>       <c-a>     :Ag<CR>
-            nnoremap <silent>       <c-b>     :Buffers<CR>
             nnoremap <silent>       <c-p>     :Files<CR>
             nnoremap <silent>       <c-h>     :History<CR>
             nnoremap <silent>       <c-l>     :BLines<CR>
@@ -152,11 +152,11 @@
             let g:CocErrCount = { -> printf(' E%d ', get(get(b:, 'coc_diagnostic_info', {}), 'error', 0)) }
             let g:GitInfo = { -> substitute(substitute(printf(' %s %s ', get(g:, 'coc_git_status', ''), get(b:, 'coc_git_status', '')), '\v\s{2,}', ' ', 'g'), '^\s*$', '', '') }
         " comment
-            nmap <silent> ??           :NToggleComment<CR>
-            xmap <silent> /       :<c-u>VToggleComment<CR>
-            smap <silent> /  <c-g>:<c-u>VToggleComment<CR>
-            xmap <silent> ?       :<c-u>CToggleComment<CR>
-            smap <silent> ?  <c-g>:<c-u>CToggleComment<CR>
+            nnoremap <silent> ??           :NToggleComment<CR>
+            xnoremap <silent> /       :<c-u>VToggleComment<CR>
+            snoremap <silent> /  <c-g>:<c-u>VToggleComment<CR>
+            xnoremap <silent> ?       :<c-u>CToggleComment<CR>
+            snoremap <silent> ?  <c-g>:<c-u>CToggleComment<CR>
 
 
 " some hook
