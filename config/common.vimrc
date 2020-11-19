@@ -1,7 +1,7 @@
 " common
-    " 设置leader为空格
+    " 设置leader为\
     " 设置python3对应的目录，你可以手动 export PYTHON=$(which python3) 到你的终端配置中
-        let mapleader=" "
+        let mapleader="\\"
         let g:python3_host_prog = $PYTHON
 
 " setting
@@ -15,7 +15,7 @@
     " 搜索高亮 空格+回车 去除匹配高亮
         set hlsearch
         set showmatch
-        noremap <leader><CR> :nohlsearch<CR>
+        noremap <leader> :nohlsearch<CR>
         set incsearch
         set ignorecase
         set smartcase

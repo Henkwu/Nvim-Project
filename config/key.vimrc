@@ -8,7 +8,7 @@
         nnoremap , @@
 
     "
-        nnoremap <BS>  ciw
+        nnoremap <bs>  ciw
         inoremap <c-z> <esc>u
         
     " cmap
@@ -43,9 +43,9 @@
 
     " S保存 Q退出 R重载vim配置 jj=esc
         command! W w !sudo tee > /dev/null %
-        nnoremap <silent> S     :w<CR>
-        nnoremap <silent> Q     :q!<CR>
-        nnoremap <silent> R     :source ~/.config/nvim/init.vim<CR>:echo 'reloaded'<CR>
+        nnoremap <silent> S     :w<cr>
+        nnoremap <silent> Q     :q!<cr>
+        nnoremap <silent> R     :source ~/.config/nvim/init.vim<cr>:echo 'reloaded'<cr>
         inoremap          jj    <Esc>l
 
     " 重写Shift + 左右
@@ -90,21 +90,21 @@
 
     " 选中全文
         nnoremap <m-a>     ggVG
-        nnoremap <leader>y :%yank<CR>
+        nnoremap <leader>y :%yank<cr>
 
     " ctrl u 清空一行
         nnoremap <c-u> cc<Esc>
         inoremap <c-u> <Esc>cc
 
     " alt kj 上下移动行
-        nnoremap <silent> <m-j> :m .+1<CR>
-        nnoremap <silent> <m-k> :m .-2<CR>
-        inoremap <silent> <m-j> <Esc>:m .+1<CR>i
-        inoremap <silent> <m-k> <Esc>:m .-2<CR>i
-        xnoremap <silent> <m-j> :m '>+1<CR>gv
-        xnoremap <silent> <m-k> :m '<-2<CR>gv
-        snoremap <silent> <m-j> <c-g>:m '>+1<CR>gv
-        snoremap <silent> <m-k> <c-g>:m '<-2<CR>gv
+        nnoremap <silent> <m-j> :m .+1<cr>
+        nnoremap <silent> <m-k> :m .-2<cr>
+        inoremap <silent> <m-j> <Esc>:m .+1<cr>i
+        inoremap <silent> <m-k> <Esc>:m .-2<cr>i
+        xnoremap <silent> <m-j> :m '>+1<cr>gv
+        xnoremap <silent> <m-k> :m '<-2<cr>gv
+        snoremap <silent> <m-j> <c-g>:m '>+1<cr>gv
+        snoremap <silent> <m-k> <c-g>:m '<-2<cr>gv
 
     " alt + key 操作
         inoremap <m-d> <Esc>"_ciw
@@ -116,9 +116,9 @@
 
 " windows
     " su 新左右窗口 sc关闭当前 so关闭其他 s方向切换
-        nnoremap su       :vsp<CR>
-        nnoremap sc       :close<CR>
-        nnoremap so       :only<CR>
+        nnoremap su       :vsp<cr>
+        nnoremap sc       :close<cr>
+        nnoremap so       :only<cr>
         nnoremap s<Left>  <c-w>h
         nnoremap s<Right> <c-w>l
         nnoremap s=       <c-w>=
@@ -126,16 +126,16 @@
         nnoremap s,       <c-w>10<
 
 " buffers
-        nnoremap <silent> ss        :bn<CR>
-        nnoremap <silent> sp        :bp<CR>
-        nnoremap <silent> <c-left>  :bp<CR>
-        nnoremap <silent> <c-right> :bn<CR>
-        nnoremap <silent><expr> W   ":bd \|call SetTabline()<CR>"
+        nnoremap <silent> ss        :bn<cr>
+        nnoremap <silent> sp        :bp<cr>
+        nnoremap <silent> <c-left>  :bp<cr>
+        nnoremap <silent> <c-right> :bn<cr>
+        nnoremap <silent><expr> W   ":bd \|call SetTabline()<cr>"
 
 " 一键运行文件
     command! Run  call <SID>runFile()
-    noremap  <F5> :Run<CR>
-    inoremap <F5> <ESC>:Run<CR>
+    noremap  <F5> :Run<cr>
+    inoremap <F5> <ESC>:Run<cr>
     fun! s:runFile()
         exec "w"
         if     &filetype == 'javascript' | exec 'w !node %'
@@ -196,8 +196,8 @@
         endtry
     endf
 
-" tab 行首行尾切换
-    nnoremap <silent> <tab> :call <SID>move()<cr>
+" space 行首行尾切换
+    nnoremap <silent> <space> :call <SID>move()<cr>
     nnoremap 0 %
     vnoremap 0 %
 
@@ -212,5 +212,5 @@
     endf
 
 " format
-    vnoremap <silent><expr> = index(['js', 'ts', 'json'], expand('%:e')) == -1 ? '=' : ':!js-beautify<CR>'
-    nnoremap <silent><expr> = index(['js', 'ts', 'json'], expand('%:e')) == -1 ? '=' : ':.!js-beautify<CR>'
+    vnoremap <silent><expr> = index(['js', 'ts', 'json'], expand('%:e')) == -1 ? '=' : ':!js-beautify<cr>'
+    nnoremap <silent><expr> = index(['js', 'ts', 'json'], expand('%:e')) == -1 ? '=' : ':.!js-beautify<cr>'
