@@ -43,7 +43,7 @@
 | normal | +                    | 数字自增                          |
 | normal | _                    | 数字自减                          |
 | normal | ,                    | 重复上一次宏操作                  |
-| normal | space - enter        | 清除当前搜索词高亮                |
+| normal | \                    | 清除当前搜索词高亮                |
 | normal | backspace            | 删除当前词并插入                  |
 | insert | ctrl - z             | 撤销最后修改并退出编辑            |
 | command| ctrl - a             | Home                              |
@@ -77,7 +77,7 @@
 | all    | F5                   | 一键运行当前文件                  |
 | normal | --                   | 折叠/反折叠                       |
 | visual | -                    | 折叠选中内容                      |
-| normal | tab                  | 在行首 第一个非空字符 行尾 跳转   |
+| normal | space                | 在行首 第一个非空字符 行尾 跳转   |
 | normal | =                    | 格式化当前行                      |
 | visual | =                    | 格式化选中内容                    |
 
@@ -88,6 +88,7 @@ PS: 如果需要格式化js和ts代码，请手动安装: npm i js-beautify -g
 ### 插件列表
 
 ```plug
+  Plug 'yianwillis/vimcdoc'             -- 中文vim help文档
   Plug 'terryma/vim-expand-region'      -- 快速选中文本插件
   Plug 'lfv89/vim-interestingwords'     -- 高亮关键词插件
   Plug 'mg979/vim-visual-multi'         -- 虚拟多光标插件

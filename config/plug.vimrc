@@ -1,5 +1,6 @@
 " Plug
     call plug#begin('~/.config/nvim/plugged')
+            Plug 'yianwillis/vimcdoc'
             Plug 'terryma/vim-expand-region'
             Plug 'lfv89/vim-interestingwords'
             Plug 'mg979/vim-visual-multi', {'branch': 'master'}
@@ -109,6 +110,7 @@
             tnoremap <silent><expr> <c-n>     &ft != "fzf" ? "<c-n>" : g:FZF_HISTORY_INDEX + 1 >= len(g:FZF_HISTORIES) ? "" : "<c-u><c-\><c-n>:call <SID>getFzfHistory(1)<cr>\"*pi"
             tnoremap <silent><expr> <c-p>     &ft != "fzf" ? "<c-p>" : g:FZF_HISTORY_INDEX - 1 < 0 ? "" : "<c-u><c-\><c-n>:call <SID>getFzfHistory(-1)<cr>\"*pi"
             fun! s:addFzfHistory(str)
+                let g:FZF_HISTORY_INDEX = len(g:FZF_HISTORIES)
                 if empty(a:str) == 1 || a:str =~ '╭─*╮' || a:str =~ '^.*>' | return | endif
                 if len(g:FZF_HISTORIES) && g:FZF_HISTORIES[-1] ==# a:str | return | endif
                 call add(g:FZF_HISTORIES, a:str)
