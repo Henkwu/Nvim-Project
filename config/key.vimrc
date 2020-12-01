@@ -6,10 +6,14 @@
         nnoremap + <c-a>
         nnoremap _ <c-x>
         nnoremap , @@
-
-    "
-        nnoremap <bs>  ciw
         inoremap <c-z> <esc>u
+
+    " 快速删除
+        nnoremap <bs>  ciw
+        inoremap <expr> <c-h> col('.') == col('$') ? '<esc>"_db"_xa' : '<esc>"_db"_xi'
+
+    " 打断,
+        nnoremap <c-j> f,a<cr><esc>
         
     " cmap
         cnoremap <c-a> <home>
