@@ -14,6 +14,7 @@
 
     " 打断,
         nnoremap <c-j> f,a<cr><esc>
+        inoremap <c-j> <esc>f,a<cr>
         
     " cmap
         cnoremap <c-a> <home>

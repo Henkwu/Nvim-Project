@@ -70,6 +70,7 @@
 
     " rainbow
             let g:rainbow_active = 1
+            let g:rainbow_conf = {'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta', 'blue', 'yellow', 'cyan', 'magenta']}
 
     " vim-javascript
             let g:javascript_plugin_jsdoc = 1
