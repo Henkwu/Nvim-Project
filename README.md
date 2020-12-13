@@ -127,7 +127,7 @@ PS: 如果需要格式化js和ts代码，请手动安装: npm i js-beautify -g
 
 - [**neoclide/coc.nvim**](https://github.com/neoclide/coc.nvim)
   - 建议到对应的仓库看一下
-  - 全局的插件列表 let g:coc_global_extensions=['coc-css', 'coc-html', 'coc-tsserver', 'coc-ccls', 'coc-clangd', 'coc-java', 'coc-word', 'coc-explorer', 'coc-markdownlint', 'coc-pairs', 'coc-snippets', 'coc-tabnine', 'coc-translator', 'coc-git']
+  - 全局的插件列表 let g:coc_global_extensions=[...] 按需添加
   - coc 通用快捷键
     - tab/s-tab 上下 选择候选项
     - gd 跳转到定义
@@ -154,6 +154,7 @@ PS: 如果需要格式化js和ts代码，请手动安装: npm i js-beautify -g
   - ctrl - h 历史文件搜索
   - ctrl - g git变更文件搜索
   - ctrl - n/p 补全搜索历史
+  - ctrl - / 关闭/开启preview
 
 - **yaocccc/...  自己写的三个插件的使用说明**
   - 建议到对应的仓库看一下
