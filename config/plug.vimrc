@@ -6,6 +6,7 @@
             Plug 'mg979/vim-visual-multi', {'branch': 'master'}
             Plug 'luochen1990/rainbow'
             Plug 'pangloss/vim-javascript', {'for': ['javascript', 'vim-plug']}
+            " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
             Plug 'iamcco/markdown-preview.vim', {'for': ['markdown', 'vim-plug']}
             Plug 'neoclide/coc.nvim', {'branch': 'release'}
             Plug 'voldikss/vim-floaterm', { 'on': ['FloatermToggle'] }
@@ -23,6 +24,7 @@
                 \ 'coc-tsserver',
                 \ 'coc-html', 'coc-css',
                 \ 'coc-ccls', 'coc-clangd',
+                \ 'coc-go',
                 \ 'coc-vimlsp',
                 \ 'coc-sh',
                 \ 'coc-java',
@@ -96,7 +98,7 @@
 
     " fzf
         " maps
-            let g:fzf_preview_window = 'right:50%'
+            let g:fzf_preview_window = ['right:50%', 'ctrl-/']
             let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
             let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.5 } }
             nnoremap <silent>       <c-a>     :Ag<cr>
@@ -146,6 +148,11 @@
 
     " yaocccc
         " line
+        let g:vim_line_comments = { 'vim': '"', 'vimrc': '"',
+                                 \  'js': '//', 'ts': '//',
+                                 \  'java': '//', 'class': '//',
+                                 \  'c': '//', 'h': '//',
+                                 \  'go': '//' }
             let g:line_statusline_enable = 1
             let g:line_tabline_enable = 1
             let g:line_tabline_show_pwd = 1

@@ -1,9 +1,9 @@
 {
-	"diagnostic.signOffset": 1,
-	"diagnostic.errorSign": "\uf467",
-	"diagnostic.warningSign": "!",
-	"diagnostic.infoSign": "!",
-	"diagnostic.hintSign": "!",
+    "diagnostic.signOffset": 1,
+    "diagnostic.errorSign": "\uf467",
+    "diagnostic.warningSign": "!",
+    "diagnostic.infoSign": "!",
+    "diagnostic.hintSign": "!",
     "snippets.userSnippetsDirectory": "~/.config/nvim/snippets",
     "tabnine.priority": 90,
     "pairs.enableCharacters": ["(", "[", "{", "'", "\"", "`"],
@@ -65,7 +65,6 @@
         "name": "JavaSE-14",
         "path": "/opt/jdk-14.0.2",
         "default": true
-    }
-  ],
-  "clangd.path": "/home/chenyc/.config/coc/extensions/coc-clangd-data/install/10.0.0/clangd_10.0.0/bin/clangd"
+    }],
+    "clangd.path": "/home/chenyc/.config/coc/extensions/coc-clangd-data/install/10.0.0/clangd_10.0.0/bin/clangd"
 }
