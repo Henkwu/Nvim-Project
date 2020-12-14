@@ -29,6 +29,7 @@
     "explorer.git.icon.status.unmerged": "!",
     "explorer.git.icon.status.untracked": "?",
     "explorer.git.icon.status.ignored": " ",
+    "explorer.git.showIgnored": false,
     "explorer.keyMappings.global.i": false,
     "explorer.keyMappings.global.<tab>": "toggleSelection",
     "explorer.keyMappings.global.<2-LeftMouse>": ["expandable?", ["expanded?", "collapse", "expand"], "open"],
@@ -66,5 +67,13 @@
         "path": "/opt/jdk-14.0.2",
         "default": true
     }],
-    "clangd.path": "/home/chenyc/.config/coc/extensions/coc-clangd-data/install/10.0.0/clangd_10.0.0/bin/clangd"
+    "clangd.path": "/home/chenyc/.config/coc/extensions/coc-clangd-data/install/10.0.0/clangd_10.0.0/bin/clangd",
+    "languageserver.golang": {
+        "command": "gopls",
+        "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+        "filetypes": ["go"],
+        "initializationOptions": {
+            "usePlaceholders": true
+        }
+    }
 }

@@ -6,7 +6,6 @@
             Plug 'mg979/vim-visual-multi', {'branch': 'master'}
             Plug 'luochen1990/rainbow'
             Plug 'pangloss/vim-javascript', {'for': ['javascript', 'vim-plug']}
-            " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
             Plug 'iamcco/markdown-preview.vim', {'for': ['markdown', 'vim-plug']}
             Plug 'neoclide/coc.nvim', {'branch': 'release'}
             Plug 'voldikss/vim-floaterm', { 'on': ['FloatermToggle'] }
