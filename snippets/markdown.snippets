@@ -6,25 +6,33 @@ snippet head "head~"
 	- [ ] ${1}
 	- [ ] ${2}
 
-	## 昨日未完成工作
+	## 昨日工作
+
+	## 明日工作
 
 	## 记录
+
+snippet mm "month~"
+	# ${1:`strftime("%Y %m")`}
+
+	## todo
+
+	## event
+
+	## check
+
+snippet dd "day~"
+	# ${1:`strftime("%Y %m %d")`}
+
+	## todo
+
+	## event
+
+	## check
+
 
 snippet td "todo list"
 	- [ ] ${1}
 
-snippet rd "done list"
-	- [x] ${1}
-
-snippet bd "bold"
-	**${1}**
-
-snippet it "italic"
-	*${1}*
-
-snippet bi "bold & italic"
-	***${1}***
-
 snippet ref "ref~"
-	[${1:text}](#${2:target})  
-
+	[${1}](${2})  

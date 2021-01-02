@@ -7,6 +7,7 @@
         nnoremap _ <c-x>
         nnoremap , @@
         inoremap <c-z> <esc>u
+        inoremap <c-v> <esc>pa
 
     " 快速删除
         nnoremap <bs>  ciw
@@ -50,7 +51,7 @@
         command! W w !sudo tee > /dev/null %
         nnoremap <silent> S     :w<cr>
         nnoremap <silent> Q     :q!<cr>
-        nnoremap <silent> R     :source ~/.config/nvim/init.vim<cr>:echo 'reloaded'<cr>
+        nnoremap <silent> R     :source ~/.config/nvim/init.vim<cr>:echo 'reloaded' \| w \| e!<cr>
         inoremap          jj    <Esc>l
 
     " 重写Shift + 左右
