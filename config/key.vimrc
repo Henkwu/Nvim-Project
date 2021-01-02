@@ -51,7 +51,7 @@
         command! W w !sudo tee > /dev/null %
         nnoremap <silent> S     :w<cr>
         nnoremap <silent> Q     :q!<cr>
-        nnoremap <silent> R     :source ~/.config/nvim/init.vim<cr>:echo 'reloaded' \| w \| e!<cr>
+        nnoremap <silent> R     :source ~/.config/nvim/init.vim<cr>:echo 'reloaded' \| e<cr>
         inoremap          jj    <Esc>l
 
     " 重写Shift + 左右
