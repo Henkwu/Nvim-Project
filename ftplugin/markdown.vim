@@ -8,14 +8,14 @@ fun! s:setOfMD()
     setlocal softtabstop=2
     setlocal tabstop=2
     nnoremap <silent><buffer> <CR> :call <SID>toggleTodoStatus()<CR>
-    snoremap <silent><buffer> B <c-g>:<c-u>call SurroundVaddPairs("**", "**", 0)<cr>
-    xnoremap <silent><buffer> B      :<c-u>call SurroundVaddPairs("**", "**", 0)<cr>
-    snoremap <silent><buffer> I <c-g>:<c-u>call SurroundVaddPairs("*", "*", 0)<cr>
-    xnoremap <silent><buffer> I      :<c-u>call SurroundVaddPairs("*", "*", 0)<cr>
-    snoremap <silent><buffer> T <c-g>:<c-u>call SurroundVaddPairs("- [ ] ", "", 0)<cr>
-    xnoremap <silent><buffer> T      :<c-u>call SurroundVaddPairs("- [ ] ", "", 0)<cr>
-    snoremap <silent><buffer> ` <c-g>:<c-u>call SurroundVaddPairs("```", "```", 0)<cr>
-    xnoremap <silent><buffer> `      :<c-u>call SurroundVaddPairs("```", "```", 0)<cr>
+    snoremap <silent><buffer> B <c-g>:<c-u>call SurroundVaddPairs("**", "**")<cr>
+    xnoremap <silent><buffer> B      :<c-u>call SurroundVaddPairs("**", "**")<cr>
+    snoremap <silent><buffer> I <c-g>:<c-u>call SurroundVaddPairs("*", "*")<cr>
+    xnoremap <silent><buffer> I      :<c-u>call SurroundVaddPairs("*", "*")<cr>
+    snoremap <silent><buffer> T <c-g>:<c-u>call SurroundVaddPairs("- [ ] ", "")<cr>
+    xnoremap <silent><buffer> T      :<c-u>call SurroundVaddPairs("- [ ] ", "")<cr>
+    snoremap <silent><buffer> ` <c-g>:<c-u>call SurroundVaddPairs("```", "```")<cr>
+    xnoremap <silent><buffer> `      :<c-u>call SurroundVaddPairs("```", "```")<cr>
 endf
 
 fun! s:toggleTodoStatus()
