@@ -131,14 +131,14 @@
             let g:VM_maps['Find Under']         = '<C-n>'
             let g:VM_maps['Find Subword Under'] = '<C-n>'
             let g:VM_maps['Select All']         = '<C-d>'
-            let g:VM_maps["Select Cursor Up"]   = '<M-Up>'
-            let g:VM_maps["Select Cursor Down"] = '<M-Down>'
-            let g:VM_maps["Select l"]           = '<M-Right>'
-            let g:VM_maps["Select h"]           = '<M-Left>'
-            let g:VM_maps["Add Cursor Up"]      = '<C-Up>'
-            let g:VM_maps["Add Cursor Down"]    = '<C-Down>'
-            let g:VM_maps["Add Cursor At Pos"]  = '<C-x>'
-            let g:VM_maps["Add Cursor At Word"] = '<C-w>'
+            let g:VM_maps['Select Cursor Up']   = '<M-Up>'
+            let g:VM_maps['Select Cursor Down'] = '<M-Down>'
+            let g:VM_maps['Select l']           = '<M-Right>'
+            let g:VM_maps['Select h']           = '<M-Left>'
+            let g:VM_maps['Add Cursor Up']      = '<C-Up>'
+            let g:VM_maps['Add Cursor Down']    = '<C-Down>'
+            let g:VM_maps['Add Cursor At Pos']  = '<C-x>'
+            let g:VM_maps['Add Cursor At Word'] = '<C-w>'
             let g:VM_maps['Remove Region']      = 'q'
             let g:VM_maps['Increase']           = '+'
             let g:VM_maps['Decrease']           = '_'
@@ -147,11 +147,11 @@
 
     " yaocccc
         " line
-        let g:vim_line_comments = { 'vim': '"', 'vimrc': '"',
-                                 \  'js': '//', 'ts': '//',
-                                 \  'java': '//', 'class': '//',
-                                 \  'c': '//', 'h': '//',
-                                 \  'go': '//' }
+            let g:vim_line_comments = { 'vim': '"', 'vimrc': '"',
+                                     \  'js': '//', 'ts': '//',
+                                     \  'java': '//', 'class': '//',
+                                     \  'c': '//', 'h': '//',
+                                     \  'go': '//' }
             let g:line_statusline_enable = 1
             let g:line_tabline_enable = 1
             let g:line_tabline_show_pwd = 1
