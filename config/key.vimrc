@@ -8,10 +8,11 @@
         nnoremap , @@
         inoremap <c-z> <esc>u
         inoremap <c-v> <esc>pa
-
+        map <F3> :NERDTreeMirror<CR>
+        map <F2> :NERDTreeToggle<CR>
     " 快速删除
-        nnoremap <bs>  ciw
-        inoremap <expr> <c-h> col('.') == col('$') ? '<esc>"_db"_xa' : '<esc>"_db"_xi'
+        "nnoremap <bs>  ciw
+        "inoremap <expr> <c-h> col('.') == col('$') ? '<esc>"_db"_xa' : '<esc>"_db"_xi'
 
     " 打断,
         nnoremap <c-j> f,a<cr><esc>

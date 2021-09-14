@@ -14,6 +14,8 @@
             Plug 'yaocccc/vim-lines'
             Plug 'yaocccc/vim-surround'
             Plug 'yaocccc/vim-comment'
+            Plug 'vim-latex/vim-latex'
+            Plug 'preservim/nerdtree'
     call plug#end()
 
 " Plug Setting
@@ -22,18 +24,18 @@
             let g:coc_global_extensions=[
                 \ 'coc-tsserver',
                 \ 'coc-html', 'coc-css',
-                \ 'coc-ccls', 'coc-clangd',
+                \ 'coc-clangd','coc-snippets',
                 \ 'coc-go',
                 \ 'coc-vimlsp',
                 \ 'coc-sh',
                 \ 'coc-java',
                 \ 'coc-json',
-                \ 'coc-pairs', 'coc-snippets', 'coc-tabnine',
+                \ 'coc-pairs', 'coc-tabnine',
                 \ 'coc-word',  'coc-markdownlint',
                 \ 'coc-translator', 'coc-explorer', 'coc-git'
                 \ ]
         " maps
-            nmap     <silent>       <F2>      <Plug>(coc-rename)
+            "nmap     <silent>       <F2>      <Plug>(coc-rename)
             nmap     <silent>       gd        <Plug>(coc-definition)
             nmap     <silent>       gy        <Plug>(coc-type-definition)
             nmap     <silent>       gi        <Plug>(coc-implementation)
@@ -161,7 +163,20 @@
             let g:line_statusline_getters = ['CocErrCount', 'GitInfo']
             let g:CocErrCount = { -> printf(' E%d ', get(get(b:, 'coc_diagnostic_info', {}), 'error', 0)) }
             let g:GitInfo = { -> substitute(substitute(printf(' %s %s ', get(g:, 'coc_git_status', ''), get(b:, 'coc_git_status', '')), '\v\s{2,}', ' ', 'g'), '^\s*$', '', '') }
-        " comment
+    " LaTeX Settings
+            set grepprg=grep\ -nH\ $*
+            let g:tex_flavor='latex'
+            set iskeyword+=:
+            "autocmd Filetype tex setl updatetime=1
+            "let g:Tex_ViewRule_pdf = 'evince'
+            let g:Tex_ViewRule_pdf = 'skim'
+            "let g:livepreview_previewer = 'evince'
+            let g:livepreview_previewer = 'open -a Skim'
+
+
+
+
+    " comment
             nnoremap <silent> ??           :NToggleComment<cr>
             xnoremap <silent> /       :<c-u>VToggleComment<cr>
             snoremap <silent> /  <c-g>:<c-u>VToggleComment<cr>
